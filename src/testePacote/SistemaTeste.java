@@ -9,6 +9,7 @@ public class SistemaTeste {
 	public static void main(String[] args) {
 
 		// Classes
+		Saldo saldo = new Saldo(0.0);
 		Menus menu = new Menus();
 		Login login = new Login();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -72,6 +73,67 @@ public class SistemaTeste {
 						number = input.nextInt();
 
 						switch (number) {
+							case 1: {
+								boolean sair = false;
+
+								do{
+									console.limpar();
+									menu.menuSavedin();
+									number = input.nextInt();
+
+									switch(number){	
+										case 1: {	
+											boolean sairConsulta = false;									
+											do {
+												console.limpar();
+												menu.menuConsultas();
+												number = input.nextInt();
+												switch(number){
+													case 1: {
+														do {
+															console.limpar();
+															System.out.println(
+																"\nSeu saldo é: "+ "R$" + saldo.getSaldo() 
+																+ "\n 1 - voltar");
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
+														break;
+													}
+													case 2: {
+														sairConsulta = true;
+														break;
+													}
+													default: {
+														System.out.println("Opção invalida");
+														break;
+													}
+												}
+											
+											} while (!sairConsulta);
+											break;
+										}
+
+										case 2:{
+											sair = true;
+										}
+										default: {
+											System.out.println("Opção invalida");
+											break;
+										}
+									}
+								}while(!sair);
+								break;
+							}
 							case 2: {
 								boolean sairPerfil = false;
 								do {
@@ -379,6 +441,11 @@ public class SistemaTeste {
 										}
 									}
 								} while (!sair);
+								break;
+							}
+							case 5: {
+								login.logout();
+								console.limpar();
 								break;
 							}
 						}

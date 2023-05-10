@@ -13,7 +13,9 @@ public class Menus {
 		String cabecalho;
 		String opcoes;
 
-		opcoes = "\n2 - Perfil"
+		opcoes = 
+				"\n1 - Ferramentas SaveDin"
+				+"\n2 - Perfil"
 				+ "\n3 - Editar usuário";
 
 		if (permissao == 1) {
@@ -21,7 +23,7 @@ public class Menus {
 					+ "\n| Menu Principal ADMIN |\n"
 					+ "------------------------\n\n";
 			opcoes += "\n4 - CRUD Usuários"
-					+ "\n6 - Logout";
+					+ "\n5 - Logout";
 		} else {
 			cabecalho = "------------------"
 					+ "\n| Menu Principal |\n"
@@ -30,6 +32,29 @@ public class Menus {
 		}
 
 		System.out.println(cabecalho + opcoes);
+	}
+
+	public void menuSavedin(){
+		System.out.println( 
+			"---------------------"
+			+ "\n| Menu SaveDin |\n"
+			+ "---------------------\n\n"
+		);
+									
+		System.out.println(
+			"\n1 - Consultas"
+			+"\n2 - voltar"
+		);
+	}
+
+	public void menuConsultas(){
+		System.out.println(
+			"---------------------"
+			+ "\n| Menu de Consultas|\n"
+			+ "---------------------\n\n"
+			+ "\n1 - Consultar seu saldo"
+			+ "\n2 - sair"
+		);
 	}
 
 	public void crudUser() {
