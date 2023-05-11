@@ -14,9 +14,11 @@ public class SistemaTeste {
 		Login login = new Login();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		LimparConsole console = new LimparConsole();
+		GanhoDAO ganhoDAO = new GanhoDAO();
 
 		// Repositorios
 		RepositorioUser usuario = new RepositorioUser();
+		RepositorioGanho ganho = new RepositorioGanho();
 
 		// Libs
 		Scanner input = new Scanner(System.in);
@@ -125,6 +127,34 @@ public class SistemaTeste {
 
 										case 2:{
 											sair = true;
+										}
+
+										case 3:{
+											console.limpar();
+											menu.menuCadastro();
+											number = input.nextInt();
+
+											switch(number){
+												case 1: {
+													console.limpar();
+													ganhoDAO.cadastro(ganho, saldo);
+													do {
+														System.out.println("----------------------"
+																		+ "\n| Ganho Adicionado |\n"
+																		+ "----------------------" 
+																		+ "\n 1-voltar");
+														
+														number = input.nextInt();
+														switch(number){
+															case 1: {
+																sair = true;
+																break;
+															}
+														}
+													
+													} while (sair);
+												}
+											}
 										}
 										default: {
 											System.out.println("Opção invalida");

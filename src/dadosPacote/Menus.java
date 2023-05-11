@@ -44,6 +44,7 @@ public class Menus {
 		System.out.println(
 			"\n1 - Consultas"
 			+"\n2 - voltar"
+			+"\n3 - Cadastrar"
 		);
 	}
 
@@ -56,6 +57,17 @@ public class Menus {
 			+ "\n2 - sair"
 		);
 	}
+
+	public void menuCadastro(){
+		System.out.println(
+			"---------------------"
+			+ "\n| Menu de Cadastros|\n"
+			+ "---------------------\n\n"
+			+ "\n1 - Cadastrar ganho"
+			+ "\n2 - sair"
+		);
+	}
+
 
 	public void crudUser() {
 		System.out.println("----------------------"

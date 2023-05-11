@@ -12,6 +12,6 @@ public class Saldo {
     }
 
     public void setSaldo(Double valor){
-        this.valor = valor;
+        this.valor += valor;
     }
 }

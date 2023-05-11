@@ -27,4 +27,12 @@ public class Verificacoes {
 		}
 		return false;
 	}
+
+	public boolean verificaTitulo(String titulo){
+		if(titulo.length() < 3){
+			return false;
+		} else{
+			return true;
+		}
+	}
 }
