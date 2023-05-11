@@ -18,7 +18,7 @@ public class SistemaTeste {
 
 		// Repositorios
 		RepositorioUser usuario = new RepositorioUser();
-		RepositorioGanho ganho = new RepositorioGanho();
+		RepositorioGanho ganhos = new RepositorioGanho();
 
 		// Libs
 		Scanner input = new Scanner(System.in);
@@ -115,6 +115,26 @@ public class SistemaTeste {
 														sairConsulta = true;
 														break;
 													}
+													case 3: {
+														do {
+															System.out.println(
+															"Ganhos: " + "\n" +
+															ganhos.getStringGanhos() +
+															"\n 1 - voltar");
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (sairConsulta);
+														break; 
+													}
 													default: {
 														System.out.println("Opção invalida");
 														break;
@@ -137,11 +157,19 @@ public class SistemaTeste {
 											switch(number){
 												case 1: {
 													console.limpar();
-													ganhoDAO.cadastro(ganho, saldo);
+													Ganho ganho = ganhoDAO.cadastro(ganhos, saldo);
+													ganhos.addGanho(ganho);
 													do {
 														System.out.println("----------------------"
 																		+ "\n| Ganho Adicionado |\n"
-																		+ "----------------------" 
+																		+ "----------------------"
+																		+ "\n Ganho: "
+																		+ "\n titulo: " 
+																		+ ganho.getTitulo()
+																		+ "\n Tipo: "
+																		+ ganho.getTipo()
+																		+ "\n Valor: "
+																		+ ganho.getValor()
 																		+ "\n 1-voltar");
 														
 														number = input.nextInt();
@@ -152,7 +180,7 @@ public class SistemaTeste {
 															}
 														}
 													
-													} while (sair);
+													} while (!sair);
 												}
 											}
 										}

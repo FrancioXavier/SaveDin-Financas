@@ -71,7 +71,6 @@ public class GanhoDAO {
 
         categoria = "teste";
         Ganho ganho = new Ganho(valor, tipo, categoria, titulo);
-        ganhos.addGanho(ganho);
         return ganho;
     }
 }

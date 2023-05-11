@@ -54,6 +54,7 @@ public class Menus {
 			+ "\n| Menu de Consultas|\n"
 			+ "---------------------\n\n"
 			+ "\n1 - Consultar seu saldo"
+			+ "\n3 - Consultar seus ganhos"
 			+ "\n2 - sair"
 		);
 	}

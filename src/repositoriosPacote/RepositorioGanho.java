@@ -21,9 +21,11 @@ public class RepositorioGanho {
     public String getStringGanhos(){
         String resultado = "";
 
-        System.out.println("Ganhos: ");
         for(Ganho uniGanho: this.ganho){
-            resultado += uniGanho.toString() + "\n";
+            resultado += "\n Titulo: " + uniGanho.getTitulo().toString() + 
+                         "\n Valor: " + uniGanho.getValor().toString() + 
+                        "\n Tipo: " + uniGanho.getTipo().toString() +
+                        "\n \n";
         }
         return resultado;
     }
