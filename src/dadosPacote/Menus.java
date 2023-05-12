@@ -65,6 +65,7 @@ public class Menus {
 			+ "\n| Menu de Cadastros|\n"
 			+ "---------------------\n\n"
 			+ "\n1 - Cadastrar ganho"
+			+ "\n3 - Cadastrar Conta Bancária"
 			+ "\n2 - sair"
 		);
 	}

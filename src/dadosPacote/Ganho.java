@@ -3,13 +3,11 @@ package dadosPacote;
 public class Ganho {
     private Double valor;
     private String tipo;
-    private String categoria;
     private String titulo;
 
-    public Ganho(Double valor, String tipo, String categoria, String titulo){
+    public Ganho(Double valor, String tipo, String titulo){
         this.valor = valor;
         this.tipo = tipo;
-        this.categoria = categoria;
         this.titulo = titulo;        
     }
 
@@ -19,10 +17,6 @@ public class Ganho {
 
     public String getTipo(){
         return this.tipo;
-    }
-
-    public String getCategoria(){
-        return this.categoria;
     }
 
     public String getTitulo(){
@@ -35,10 +29,6 @@ public class Ganho {
 
     public void setTipo(String tipo){
         this.tipo = tipo;
-    }
-
-    public void setCategoria(String categoria){
-        this.categoria = categoria;
     }
 
     public void setTitulo(String titulo){

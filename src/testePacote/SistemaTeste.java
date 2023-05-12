@@ -5,6 +5,9 @@ import repositoriosPacote.*;
 
 import java.util.Scanner;
 
+import bancoPacote.ContaBancaria;
+import bancoPacote.ContaBancariaDAO;
+
 public class SistemaTeste {
 	public static void main(String[] args) {
 
@@ -15,10 +18,12 @@ public class SistemaTeste {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		LimparConsole console = new LimparConsole();
 		GanhoDAO ganhoDAO = new GanhoDAO();
+		ContaBancariaDAO contaBancariaDAO = new ContaBancariaDAO();
 
 		// Repositorios
 		RepositorioUser usuario = new RepositorioUser();
 		RepositorioGanho ganhos = new RepositorioGanho();
+		RepositorioContasBancarias contas = new RepositorioContasBancarias();
 
 		// Libs
 		Scanner input = new Scanner(System.in);
@@ -180,6 +185,36 @@ public class SistemaTeste {
 															}
 														}
 													
+													} while (!sair);
+												} case 2: {
+													sair = true;
+													break;
+												} case 3: {
+													console.limpar();
+													ContaBancaria novaContaBancaria = contaBancariaDAO.cadastro(contas);
+													contas.addConta(novaContaBancaria);
+
+													do {
+														System.out.println(
+															"----------------------"
+															+ "\n| Conta Adicionada |\n"
+															+ "----------------------"
+															+ "\nNome do banco: "
+															+ novaContaBancaria.getNomeBanco()
+															+ "\nNome do titular: "
+															+ novaContaBancaria.getNomeCompleto()
+															+ "\nTipo da conta: "
+															+ novaContaBancaria.getTipoConta()
+															+ "\n1-voltar");
+														
+														number = input.nextInt();
+														switch(number){
+															case 1: {
+																sair = true;
+																break;
+															}
+														}
+
 													} while (!sair);
 												}
 											}

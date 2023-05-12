@@ -16,7 +16,6 @@ public class GanhoDAO {
         int count = 0;
         int valorTipo;
         String tipo = "";
-        String categoria;
         String titulo;
         
         System.out.println(
@@ -69,8 +68,8 @@ public class GanhoDAO {
         } while (tipo == "");
         count = 0;
 
-        categoria = "teste";
-        Ganho ganho = new Ganho(valor, tipo, categoria, titulo);
+
+        Ganho ganho = new Ganho(valor, tipo, titulo);
         return ganho;
     }
 }
