@@ -23,6 +23,14 @@ public class TesouroPrefixado extends Investimento{
 		this.taxaRendimento = taxaRendimento;
 	}
 
+	public Double getTaxaAdm() {
+		return taxaAdm;
+	}
+
+	public void setTaxaAdm(Double taxaAdm) {
+		this.taxaAdm = taxaAdm;
+	}
+
 	@Override
 	public Double rendimento() {
 		double taxa = 1 + this.taxaRendimento;

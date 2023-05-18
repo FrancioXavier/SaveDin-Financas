@@ -1,6 +1,8 @@
 package testePacote;
 
 import dadosPacote.*;
+import investimentoPacote.Investimento;
+import investimentoPacote.InvestimentoDAO;
 import repositoriosPacote.*;
 
 import java.util.Scanner;
@@ -19,11 +21,13 @@ public class SistemaTeste {
 		LimparConsole console = new LimparConsole();
 		GanhoDAO ganhoDAO = new GanhoDAO();
 		ContaBancariaDAO contaBancariaDAO = new ContaBancariaDAO();
+		InvestimentoDAO investimentoDAO = new InvestimentoDAO();
 
 		// Repositorios
 		RepositorioUser usuario = new RepositorioUser();
 		RepositorioGanho ganhos = new RepositorioGanho();
 		RepositorioContasBancarias contas = new RepositorioContasBancarias();
+		RepositorioInvestimentos investimentos = new RepositorioInvestimentos();
 
 		// Libs
 		Scanner input = new Scanner(System.in);
@@ -81,6 +85,7 @@ public class SistemaTeste {
 
 						switch (number) {
 							case 1: {
+								boolean sairConsulta = false;
 								boolean sair = false;
 
 								do{
@@ -90,7 +95,7 @@ public class SistemaTeste {
 
 									switch(number){	
 										case 1: {	
-											boolean sairConsulta = false;									
+																				
 											do {
 												console.limpar();
 												menu.menuConsultas();
@@ -167,6 +172,7 @@ public class SistemaTeste {
 												}
 											
 											} while (!sairConsulta);
+											sairConsulta = false;
 											break;
 										}
 
@@ -200,12 +206,13 @@ public class SistemaTeste {
 														number = input.nextInt();
 														switch(number){
 															case 1: {
-																sair = true;
+																sairConsulta = true;
 																break;
 															}
 														}
-													
-													} while (!sair);
+														
+													} while (!sairConsulta);
+													break;
 												} case 2: {
 													sair = true;
 													break;
@@ -236,6 +243,32 @@ public class SistemaTeste {
 														}
 
 													} while (!sair);
+													sairConsulta = false;
+													break;
+												} case 4: {
+													console.limpar();
+													Investimento investimento = investimentoDAO.cadastro(investimentos);
+													do {
+														System.out.println(
+															"----------------------"
+															+ "\n| Investimento adicionado |\n"
+															+ "----------------------"
+															+ "Conta: " 
+															+ investimento.getConta().toString() 
+															+"Valor atual: " 
+															+ investimento.getValor().toString() 
+															+"Data: " 
+															+ investimento.getData().toString()
+															+ "\n1-voltar");
+														
+														number = input.nextInt();
+														switch(number){
+															case 1: {
+																sairConsulta = true;
+																break;
+															}
+														}
+													} while (!sairConsulta);
 												}
 											}
 										}

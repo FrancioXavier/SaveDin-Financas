@@ -91,4 +91,32 @@ public class Verificacoes {
             CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
         }
 
+        public boolean validaData(Integer dia, Integer mes, Integer ano){
+            if(dia < 1 && dia > 31){
+                return false;
+            } else if(mes > 12 && mes < 1){
+                return false;
+            } else if(ano < 0 && ano > 2023){
+                return false;
+            } else{
+                return true;
+            }
+        }
+
+        public boolean validaValor(Double valor){
+            if(valor < 0){
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        public boolean validaTaxa(float taxa){
+            if(taxa < 0){
+                return false;
+            } else {
+                return true;
+            }
+        }
+
 }

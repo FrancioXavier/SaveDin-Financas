@@ -118,7 +118,9 @@ public class ContaBancariaDAO {
         if(escolha == 1){
             conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco);
         } else if(escolha == 2){
-            conta = new ContaInvestimento(nomeCompleto, cpf, nomeBanco);
+            ContaInvestimento contaInvestimento = new ContaInvestimento(nomeCompleto, cpf, nomeBanco);
+            contas.addContaInvestimento(contaInvestimento);
+            return contaInvestimento;
         } else if(escolha == 3){
             conta = new ContaPoupanca(nomeCompleto, cpf, nomeBanco);
         }else {

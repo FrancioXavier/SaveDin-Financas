@@ -23,12 +23,13 @@ public class CDB extends Investimento{
 
 	@Override
 	public Double rendimento() {
-		Double montante;
 		double taxa = 1 + this.taxaRendimento;
+		Double valorRendimento = this.valor * Math.pow(taxa, this.quantMeses);
+		Double lucro = valorRendimento - this.valor;
 
-		montante = this.valor * Math.pow(taxa, quantMeses);
+		Double valorFInal = tributacoes(lucro, valorRendimento);
 
-		return montante;
+		return valorFInal;
 	}
 
 	@Override
