@@ -140,6 +140,26 @@ public class SistemaTeste {
 														} while (sairConsulta);
 														break; 
 													}
+													case 4: {
+														do {
+															console.limpar();
+															System.out.println(
+															"Contas: " + "\n" +
+															contas.getStringContas() + 
+															"\n 1 - voltar");
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (sairConsulta);
+													}
 													default: {
 														System.out.println("Opção invalida");
 														break;

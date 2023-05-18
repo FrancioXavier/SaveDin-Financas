@@ -55,6 +55,7 @@ public class Menus {
 			+ "---------------------\n\n"
 			+ "\n1 - Consultar seu saldo"
 			+ "\n3 - Consultar seus ganhos"
+			+ "\n4 - Consultar contas bancárias"
 			+ "\n2 - sair"
 		);
 	}
@@ -65,7 +66,8 @@ public class Menus {
 			+ "\n| Menu de Cadastros|\n"
 			+ "---------------------\n\n"
 			+ "\n1 - Cadastrar ganho"
-			+ "\n3 - Cadastrar Conta Bancária"
+			+ "\n3 - Cadastrar conta bancária"
+			+ "\n4 - Cadastrar Investimento"
 			+ "\n2 - sair"
 		);
 	}
