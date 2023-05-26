@@ -13,6 +13,8 @@ public class ContaBancariaDAO {
     LimparConsole console = new LimparConsole();
     RepositorioContasBancarias contas = new RepositorioContasBancarias();
 
+    private static Integer idConta = 0;
+
     public ContaBancaria cadastro(RepositorioContasBancarias contas){
         String nomeCompleto;
         String cpf;
@@ -114,17 +116,18 @@ public class ContaBancariaDAO {
             } while (!contaExiste);
             count++;
         } while (escolha == 0);
-
+        
+        idConta += 1;
         if(escolha == 1){
-            conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco);
+            conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco, idConta);
         } else if(escolha == 2){
-            ContaInvestimento contaInvestimento = new ContaInvestimento(nomeCompleto, cpf, nomeBanco);
+            ContaInvestimento contaInvestimento = new ContaInvestimento(nomeCompleto, cpf, nomeBanco, idConta);
             contas.addContaInvestimento(contaInvestimento);
             return contaInvestimento;
         } else if(escolha == 3){
-            conta = new ContaPoupanca(nomeCompleto, cpf, nomeBanco);
+            conta = new ContaPoupanca(nomeCompleto, cpf, nomeBanco, idConta);
         }else {
-            conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco);
+            conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco, idConta);
         }
 
         return conta;

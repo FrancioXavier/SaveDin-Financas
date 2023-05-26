@@ -142,7 +142,8 @@ public class SistemaTeste {
 																	break;
 																}
 															}
-														} while (sairConsulta);
+														} while (!sairConsulta);
+														sairConsulta = false;
 														break; 
 													}
 													case 4: {
@@ -163,7 +164,31 @@ public class SistemaTeste {
 																	break;
 																}
 															}
-														} while (sairConsulta);
+														} while (!sairConsulta);
+														sairConsulta = false;
+														break;
+													}
+													case 5:{
+														do {
+															console.limpar();
+															System.out.println(
+															"Investimentos: " + "\n" +
+															investimentos.getStringInvestimetos() + 
+															"\n 1 - voltar");
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
+														sairConsulta=false;
+														break;
 													}
 													default: {
 														System.out.println("Opção invalida");
@@ -208,6 +233,9 @@ public class SistemaTeste {
 															case 1: {
 																sairConsulta = true;
 																break;
+															}default: {
+																System.out.println("Opção invalida");
+																break;
 															}
 														}
 														
@@ -232,12 +260,16 @@ public class SistemaTeste {
 															+ novaContaBancaria.getNomeCompleto()
 															+ "\nTipo da conta: "
 															+ novaContaBancaria.getTipoConta()
+															+ contas.getContasInvestimento().size()
 															+ "\n1-voltar");
 														
 														number = input.nextInt();
 														switch(number){
 															case 1: {
 																sair = true;
+																break;
+															}default: {
+																System.out.println("Opção invalida");
 																break;
 															}
 														}
@@ -246,29 +278,53 @@ public class SistemaTeste {
 													sairConsulta = false;
 													break;
 												} case 4: {
-													console.limpar();
-													Investimento investimento = investimentoDAO.cadastro(investimentos);
-													do {
-														System.out.println(
-															"----------------------"
-															+ "\n| Investimento adicionado |\n"
-															+ "----------------------"
-															+ "Conta: " 
-															+ investimento.getConta().toString() 
-															+"Valor atual: " 
-															+ investimento.getValor().toString() 
-															+"Data: " 
-															+ investimento.getData().toString()
-															+ "\n1-voltar");
-														
-														number = input.nextInt();
-														switch(number){
-															case 1: {
-																sairConsulta = true;
-																break;
+													if(contas.getContasInvestimento().size() == 0){
+														console.limpar();
+														do {
+															System.out.println(
+																"Nenhuma conta de investimentos cadastrada!" +
+																"\n1 - voltar"
+															);
+															
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																} default:{}
 															}
-														}
+														} while (!sairConsulta);
+														break;
+													} else{
+														console.limpar();
+														Investimento investimento = investimentoDAO.cadastro(investimentos, contas);
+														do {
+															System.out.println(
+																"----------------------"
+																+ "\n| Investimento adicionado |\n"
+																+ "----------------------"
+																+ "\nConta: " 
+																+ investimento.getConta().toString() 
+																+"\nValor atual: " 
+																+ investimento.getValor().toString() 
+																+"\nData: " 
+																+ investimento.getData().toString()
+																+ "\n1-voltar"
+															);
+															
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
 													} while (!sairConsulta);
+													break;
+													}
 												}
 											}
 										}

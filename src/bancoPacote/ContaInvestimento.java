@@ -1,8 +1,8 @@
 package bancoPacote;
 
 public class ContaInvestimento extends ContaBancaria{
-    public ContaInvestimento(String nomeCompleto, String cpf, String nomeBanco) {
-        super(nomeCompleto, cpf, nomeBanco);
+    public ContaInvestimento(String nomeCompleto, String cpf, String nomeBanco, Integer id) {
+        super(nomeCompleto, cpf, nomeBanco, id);
     }
 
     @Override

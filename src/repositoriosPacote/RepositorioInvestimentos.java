@@ -18,9 +18,10 @@ public class RepositorioInvestimentos {
 		String mensagem = "";
 
 		for(Investimento investimento : this.investimentos){
-			mensagem =  "Conta: " + investimento.getConta().toString() + 
-						"Valor atual: " + investimento.getValor().toString() + 
-					    "Data: " + investimento.getData().toString();
+			mensagem =  "\nTitular da conta: " + investimento.getConta().getNomeCompleto().toString() +
+						"\nBanco: " + investimento.getConta().getNomeBanco() +  
+						"\nValor atual: " + investimento.getValor().toString() + 
+					    "\nData: " + investimento.getData();
 		}
 
 		return mensagem;

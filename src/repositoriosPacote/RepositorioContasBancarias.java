@@ -4,8 +4,8 @@ import bancoPacote.*;
 import java.util.ArrayList;
 
 public class RepositorioContasBancarias {
-    ArrayList<ContaBancaria> contas = new ArrayList<ContaBancaria>();
-    ArrayList<ContaInvestimento> contasInvestimento = new ArrayList<ContaInvestimento>();
+    private ArrayList<ContaBancaria> contas = new ArrayList<ContaBancaria>();
+    private ArrayList<ContaInvestimento> contasInvestimento = new ArrayList<ContaInvestimento>();
 
     public void addConta(ContaBancaria conta){
         this.contas.add(conta);
@@ -27,9 +27,11 @@ public class RepositorioContasBancarias {
         String mensagem = "";
 
         for(ContaBancaria conta : this.contas){
-            mensagem += "\n Nome Completo: " + conta.getNomeCompleto().toString() + 
-                        "\n Cpf: " + conta.getCpf() + 
-                        "\n Nome do Banco: " + conta.getNomeBanco().toString() +
+            mensagem += "\nNome Completo: " + conta.getNomeCompleto().toString() + 
+                        "\nCpf: " + conta.getCpf() + 
+                        "\nNome do Banco: " + conta.getNomeBanco().toString() +
+                        "\nId: " + conta.getId().toString() +
+                        "\nTipo da conta: " + conta.getTipoConta() +
                         "\n \n";
         }
 

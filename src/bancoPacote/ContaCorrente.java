@@ -2,8 +2,8 @@ package bancoPacote;
 
 public class ContaCorrente extends ContaBancaria{
 
-    public ContaCorrente(String nomeCompleto, String cpf, String nomeBanco) {
-        super(nomeCompleto, cpf, nomeBanco);
+    public ContaCorrente(String nomeCompleto, String cpf, String nomeBanco, Integer id) {
+        super(nomeCompleto, cpf, nomeBanco, id);
     }
 
     public void transferencia(Double valor){

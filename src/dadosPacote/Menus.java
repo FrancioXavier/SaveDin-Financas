@@ -56,6 +56,7 @@ public class Menus {
 			+ "\n1 - Consultar seu saldo"
 			+ "\n3 - Consultar seus ganhos"
 			+ "\n4 - Consultar contas bancárias"
+			+ "\n5 - Consultar investimentos"
 			+ "\n2 - sair"
 		);
 	}

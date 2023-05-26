@@ -16,11 +16,12 @@ public class InvestimentoDAO {
     Scanner input = new Scanner(System.in);
     LimparConsole console = new LimparConsole();
 	RepositorioInvestimentos investimentos = new RepositorioInvestimentos();
-	RepositorioContasBancarias contas = new RepositorioContasBancarias();
-	ArrayList<ContaInvestimento> listaContas = contas.getContasInvestimento();
+	
 	ArrayList<Investimento> listaInvestimentos = investimentos.getInvestimentos();
 
-	public Investimento cadastro(RepositorioInvestimentos investimentos){
+	public Investimento cadastro(RepositorioInvestimentos investimentos, RepositorioContasBancarias contas){
+		ArrayList<ContaInvestimento> listaContas = contas.getContasInvestimento();
+
 		Double valor;
 		Integer dia = 0;
 		Integer mes = 0;
@@ -32,47 +33,27 @@ public class InvestimentoDAO {
 		ContaInvestimento conta;
 		int count = 0;
 		int escolha;
-		int numConta = 1;
 		Investimento investimento;
 		boolean deuCerto = false;
-		int contaEscolhida = 0;
 
 		System.out.println(
             "------------"
             + "\n| Cadastro |\n"
             + "------------\n\n"
-            + "Escolha a conta em que fez o investimento: "
+            + "Digite o Id da conta em que fez o investimento: "
         );
 
 		
 		do {
-            if (count < 1) {
-                for(ContaInvestimento contaUnidade : listaContas){
-		
-					System.out.println(
-						count + " - \n" + 
-						"CPF" + contaUnidade.getCpf().toString() +
-						"Banco" + contaUnidade.getNomeBanco().toString()
-					);
-					numConta++;
-				}
-            } else {
-                System.out.println("\nNão foi possível cadastrar, tente outra vez: ");
-            }
-            do {
-                escolha = input.nextInt();
-				for(int i = 1; i <= numConta; i++){
-					if(i == escolha){
-						contaEscolhida = i;
-					}
-				}
-            
-            } while (escolha > numConta || escolha < numConta);
-            count++;
-        } while(escolha == 0);
-		conta = listaContas.get(contaEscolhida-1);
+            escolha = input.nextInt();
+			System.out.println();
+        } while(!verificar.validaContaInvestimento(escolha, listaContas));
+
+		// conta = listaContas.get(contaEscolhida-1);
         count = 0;
         escolha = 0;
+
+		conta = listaContas.get(0);
 
 		do {
 			if(count < 1){
@@ -94,7 +75,7 @@ public class InvestimentoDAO {
 
 			} while(dia == 0 && mes == 0 && ano == 0);
 			count++;
-		} while (!verificar.validaData(dia, mes, ano));
+		} while(!verificar.validaData(dia, mes, ano));
 		String stringDia = dia.toString();
 		String stringMes = mes.toString();
 		String stringAno = ano.toString();
@@ -121,7 +102,6 @@ public class InvestimentoDAO {
 			}
 
 			floatTaxaRendimento = input.nextFloat();
-			System.out.println("%");
 		}while(!verificar.validaTaxa(floatTaxaRendimento));
 		taxaRendimento = floatTaxaRendimento / 100;
 		Double taxaFinal = taxaRendimento;
@@ -168,7 +148,6 @@ public class InvestimentoDAO {
 						}
 
 						valorTaxaAdm = input.nextInt();
-						System.out.println("%");
 						secondCount++;
 					} while (valorTaxaAdm == 0 || valorTaxaAdm < 0);
 
@@ -177,10 +156,10 @@ public class InvestimentoDAO {
 					investimentoTesouroPrefixado.setTaxaAdm(taxaAdm);
 					deuCerto = true;
 				}
-			} while (escolha != 1 || escolha != 2);
+			} while(escolha == 0);
 		}while(!deuCerto);
 
-		investimento = listaInvestimentos.get(listaInvestimentos.size() - 1);
+		investimento = investimentos.getInvestimentos().get(investimentos.getInvestimentos().size() - 1);
 
 		return investimento;
 	}
