@@ -32,6 +32,11 @@ public class GastoInteiro implements Gastos{
 	}
 
 	@Override
+	public String getTipoGasto() {
+		return "Gasto inteiro";
+	}
+
+	@Override
 	public void setData(String data) {
 		this.data = data;
 	}

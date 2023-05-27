@@ -3,6 +3,7 @@ package dadosPacote;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+import bancoPacote.ContaBancaria;
 import bancoPacote.ContaInvestimento;
 import repositoriosPacote.*;
 
@@ -130,6 +131,17 @@ public class Verificacoes {
             }
         }
         return false;
+    }
+
+    public boolean validaContaBancaria(Integer id, ArrayList<ContaBancaria> contas){
+        for(ContaBancaria conta : contas){
+            if(id == conta.getId()){
+                return true;
+            }
+        }
+
+        return false;
+        
     }
 
 }

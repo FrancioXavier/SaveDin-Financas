@@ -22,12 +22,14 @@ public class SistemaTeste {
 		GanhoDAO ganhoDAO = new GanhoDAO();
 		ContaBancariaDAO contaBancariaDAO = new ContaBancariaDAO();
 		InvestimentoDAO investimentoDAO = new InvestimentoDAO();
+		GastosDAO gastosDAO = new GastosDAO();
 
 		// Repositorios
 		RepositorioUser usuario = new RepositorioUser();
 		RepositorioGanho ganhos = new RepositorioGanho();
 		RepositorioContasBancarias contas = new RepositorioContasBancarias();
 		RepositorioInvestimentos investimentos = new RepositorioInvestimentos();
+		RepositorioGastos gastos = new RepositorioGastos();
 
 		// Libs
 		Scanner input = new Scanner(System.in);
@@ -323,8 +325,63 @@ public class SistemaTeste {
 																}
 															}
 													} while (!sairConsulta);
+													sairConsulta = false;
 													break;
 													}
+												}
+												case 5: {
+													console.limpar();
+													String parceladoOuInteiro = gastosDAO.cadastro(gastos, saldo, contas);
+													
+													do {
+														if(parceladoOuInteiro == "Gasto inteiro"){
+															GastoInteiro gasto = gastos.getGastosInteiros().get(
+																gastos.getGastosInteiros().size() - 1
+															);
+	
+															System.out.println(
+																	"----------------------"
+																	+ "\n| Gasto adicionado |\n"
+																	+ "----------------------" +
+																	"\nTitulo: " + gasto.getTitulo() +
+																	"\nData: " + gasto.getData() +
+																	"\nValor: " + gasto.getValor().toString() +
+																	"\nFixo ou variável: " + gasto.getFixoOuVariavel()
+																	+ "\n1-voltar"
+															);
+														} else if(parceladoOuInteiro == "Gasto parcelado"){
+															GastoParcelado gasto = gastos.getGastosParcelados().get(
+																gastos.getGastosParcelados().size() - 1
+															);
+	
+															System.out.println(
+																	"----------------------"
+																	+ "\n| Gasto adicionado |\n"
+																	+ "----------------------" +
+																	"\nTitulo: " + gasto.getTitulo() +
+																	"\nData: " + gasto.getData() +
+																	"\nValor da parcela: " + gasto.getValorParcela().toString() +
+																	"\nQuantidade de parcelas: " + gasto.getParcelas().toString() +
+																	"\nValor total: " + gasto.getValor().toString() +
+																	"\nTitular da Conta: " + gasto.getConta().getNomeCompleto() +
+																	"\nNome do banco: " + gasto.getConta().getNomeBanco()
+																	+ "\n1-voltar"
+															);
+														} else{
+															System.out.println("Conta investimento é inválida" + "\n1-voltar");
+														}
+
+														number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+													} while (!sairConsulta);
 												}
 											}
 										}

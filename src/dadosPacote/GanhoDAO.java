@@ -27,7 +27,7 @@ public class GanhoDAO {
 
         do {
             valor = input.nextDouble();
-        } while(valor == null);
+        } while(!verificar.validaValor(valor));
         saldo.setSaldo(valor);
 
         do {
@@ -45,7 +45,7 @@ public class GanhoDAO {
 
         do {
             if (count < 1) {
-                System.out.println("\nEscolha o tipo de gasto: " 
+                System.out.println("\nEscolha o tipo de ganho: " 
                                     + "\n1 - Fixo" + "\n2 - Variavel");
             } else {
                 System.out.println("\nNão foi possível cadastrar, tente outra vez: ");

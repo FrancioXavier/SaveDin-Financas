@@ -52,6 +52,11 @@ public class GastoParcelado implements Gastos {
 	}
 
 	@Override
+	public String getTipoGasto() {
+		return "Gasto parcelado";
+	}
+
+	@Override
 	public void setData(String data) {
 		this.data = data;
 	}

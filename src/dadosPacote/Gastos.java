@@ -7,4 +7,5 @@ public interface Gastos {
     public void setTitulo(String titulo);
     public void setValor(Double valor);
     public void setData(String data);
+    public String getTipoGasto();
 }

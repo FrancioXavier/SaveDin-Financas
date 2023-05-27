@@ -14,4 +14,8 @@ public class Saldo {
     public void setSaldo(Double valor){
         this.valor += valor;
     }
+
+    public void subtractSaldo(Double valor){
+        this.valor -= valor;
+    }
 }
