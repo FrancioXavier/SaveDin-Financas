@@ -192,6 +192,28 @@ public class SistemaTeste {
 														sairConsulta=false;
 														break;
 													}
+													case 6: {
+														do {
+															console.limpar();
+															System.out.println(
+																"Gastos: \n" +
+																gastos.getGastos() +
+																"\n 1 - voltar"
+															);
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
+														break;
+													}
 													default: {
 														System.out.println("Opção invalida");
 														break;

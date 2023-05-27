@@ -43,17 +43,23 @@ public class InvestimentoDAO {
             + "Digite o Id da conta em que fez o investimento: "
         );
 
-		
-		do {
-            escolha = input.nextInt();
-			System.out.println();
-        } while(!verificar.validaContaInvestimento(escolha, listaContas));
+		while(true){
+			try{
+				escolha = input.nextInt();
+				if(verificar.validaContaInvestimento(escolha, listaContas)){
+					break;
+				}
+			} catch(Exception e){
+				escolha = input.nextInt();
+				if(verificar.validaContaInvestimento(escolha, listaContas)){
+					break;
+				}
+			}
+		}
 
-		// conta = listaContas.get(contaEscolhida-1);
+		conta = listaContas.get(escolha-1);
         count = 0;
         escolha = 0;
-
-		conta = listaContas.get(0);
 
 		do {
 			if(count < 1){
@@ -94,27 +100,40 @@ public class InvestimentoDAO {
 		}while(!verificar.validaValor(valor));
 		count = 0;
 
-		do{
-			if(count < 1){
+		while(true){
+			try {
 				System.out.println("Digite a taxa de rendimento: ");
-			} else{
+				floatTaxaRendimento = input.nextFloat();
+				if(verificar.validaTaxa(floatTaxaRendimento)){
+					break;
+				}
+			} catch (Exception e) {
 				System.out.println("\nNão foi possível cadastrar, tente outra vez: ");
+				floatTaxaRendimento = input.nextFloat();
+				if(verificar.validaTaxa(floatTaxaRendimento)){
+					break;
+				}
 			}
+		}
 
-			floatTaxaRendimento = input.nextFloat();
-		}while(!verificar.validaTaxa(floatTaxaRendimento));
 		taxaRendimento = floatTaxaRendimento / 100;
 		Double taxaFinal = taxaRendimento;
 
-		do{
-			if(count < 1){
+		while(true){
+			try {
 				System.out.println("Digite a quantidade de meses que planeja deixar render: ");
-			} else{
+				quantMeses = input.nextInt();
+				if(verificar.validaTaxa(quantMeses)){
+					break;
+				}
+			} catch (Exception e) {
 				System.out.println("\nNão foi possível cadastrar, tente outra vez: ");
+				quantMeses = input.nextInt();
+				if(verificar.validaTaxa(quantMeses)){
+					break;
+				}
 			}
-
-			quantMeses = input.nextInt();	
-		}while(!verificar.validaTaxa(quantMeses));
+		}
 
 		do {
             if (count < 1) {

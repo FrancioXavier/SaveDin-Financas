@@ -108,29 +108,29 @@ public class Verificacoes {
         }
     }
 
-    public boolean validaValor(Double valor) {
+    public boolean validaValor(Double valor) throws IllegalArgumentException {
         if (valor < 0) {
-            return false;
+            throw new IllegalArgumentException("Valor inválido");
         } else {
             return true;
         }
     }
 
-    public boolean validaTaxa(float taxa) {
+    public boolean validaTaxa(float taxa) throws IllegalArgumentException {
         if (taxa < 0) {
-            return false;
+            throw new IllegalArgumentException("Valor inválido");
         } else {
             return true;
         }
     }
 
-    public boolean validaContaInvestimento(Integer id, ArrayList<ContaInvestimento> contas){
+    public boolean validaContaInvestimento(Integer id, ArrayList<ContaInvestimento> contas) throws IllegalArgumentException{
         for(ContaInvestimento conta : contas){
             if(id == conta.getId()){
                 return true;
             }
         }
-        return false;
+        throw new IllegalArgumentException("Conta não existe, tente novamente: ");
     }
 
     public boolean validaContaBancaria(Integer id, ArrayList<ContaBancaria> contas){

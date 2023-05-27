@@ -122,17 +122,21 @@ public class GastosDAO {
 			escolha = 0;
 			valeu = false;
 
-			do{
-				if(count < 1){
+			while(true){
+				try {
 					System.out.println("Digite a quantidade de parcelas: ");
-				} else{
-					System.out.println("\nNão foi possível cadastrar, tente outra vez: ");
+					parcelas = input.nextInt();
+					if(!verificar.validaTaxa(parcelas)){
+						break;
+					}
+				} catch (Exception e) {
+					System.out.println("Não foi possível cadastrar, tente outra vez: ");
+					parcelas = input.nextInt();
+					if(!verificar.validaTaxa(parcelas)){
+						break;
+					}
 				}
-	
-				parcelas = input.nextInt();
-				count++;	
-			}while(!verificar.validaTaxa(parcelas));
-			count = 0;
+			}
 			
 			do{
 				if(count < 1){

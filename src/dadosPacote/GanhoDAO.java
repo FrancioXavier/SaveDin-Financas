@@ -12,7 +12,7 @@ public class GanhoDAO {
     RepositorioGanho ganhos = new RepositorioGanho();
 
     public Ganho cadastro(RepositorioGanho ganhos, Saldo saldo){
-        Double valor;
+        Double valor = -1.0;
         int count = 0;
         int valorTipo;
         String tipo = "";
@@ -25,9 +25,22 @@ public class GanhoDAO {
             + "Digite o valor do ganho: "
         );
 
-        do {
-            valor = input.nextDouble();
-        } while(!verificar.validaValor(valor));
+        
+        while(true) {
+            try {
+                valor = input.nextDouble();
+                if(verificar.validaValor(valor)){
+                    break;
+                }
+            } catch(Exception e){
+                
+                System.out.println("Valor inválido! tente novamente: ");
+                valor = input.nextDouble();
+                if(verificar.validaValor(valor)){
+                    break;
+                }
+            }
+        }
         saldo.setSaldo(valor);
 
         do {
