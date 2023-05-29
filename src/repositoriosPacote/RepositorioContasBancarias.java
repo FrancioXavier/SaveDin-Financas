@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class RepositorioContasBancarias {
     private ArrayList<ContaBancaria> contas = new ArrayList<ContaBancaria>();
     private ArrayList<ContaInvestimento> contasInvestimento = new ArrayList<ContaInvestimento>();
+    private ArrayList<ContaPoupanca> contasPoupanca = new ArrayList<ContaPoupanca>();
 
     public void addConta(ContaBancaria conta){
         this.contas.add(conta);
@@ -15,8 +16,16 @@ public class RepositorioContasBancarias {
         this.contasInvestimento.add(conta);
     }
 
+    public void addContaPoupanca(ContaPoupanca conta){
+        this.contasPoupanca.add(conta);
+    }
+
     public ArrayList<ContaBancaria> getContas(){
         return this.contas;
+    }
+
+    public ArrayList<ContaPoupanca> getContasPoupanca(){
+        return this.contasPoupanca;
     }
 
     public ArrayList<ContaInvestimento> getContasInvestimento(){

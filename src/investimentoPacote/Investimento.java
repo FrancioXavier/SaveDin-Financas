@@ -41,4 +41,5 @@ public abstract class Investimento {
 
     public abstract Double rendimento();
     public abstract Double tributacoes(Double lucro, Double valor);
+    public abstract Double rendimentoMensal(int meses);
 }

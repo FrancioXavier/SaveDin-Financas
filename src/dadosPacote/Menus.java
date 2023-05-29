@@ -43,8 +43,9 @@ public class Menus {
 									
 		System.out.println(
 			"\n1 - Consultas"
-			+"\n2 - voltar"
 			+"\n3 - Cadastrar"
+			+"\n4 - Projeções"
+			+"\n2 - voltar"
 		);
 	}
 
@@ -72,6 +73,17 @@ public class Menus {
 			+ "\n4 - Cadastrar Investimento"
 			+ "\n5 - Cadastrar gasto"
 			+ "\n2 - sair"
+		);
+	}
+
+	public void menuProjecoes(){
+		System.out.println(
+			"---------------------"
+			+ "\n| Menu de Projeções|\n"
+			+ "---------------------\n\n"
+			+ "\n1 - Projeções mensais"
+			+ "\n2 - Projeções anuais"
+			+ "\n3 - Sair"
 		);
 	}
 

@@ -404,8 +404,33 @@ public class SistemaTeste {
 																}
 															}
 													} while (!sairConsulta);
+													sairConsulta = false;
 												}
 											}
+										} case 4: {
+											console.limpar();
+											menu.menuProjecoes();
+											number = input.nextInt();
+
+											do {
+												switch (number) {
+													case 1:{
+														
+														break;
+													} case 2: {
+														
+														break;
+													} case 3: {
+														sairConsulta = true;
+														break;
+													}
+												
+													default:{
+														
+														break;
+													}
+												}
+											} while (!sairConsulta);
 										}
 										default: {
 											System.out.println("Opção invalida");

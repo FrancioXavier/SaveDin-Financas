@@ -21,6 +21,14 @@ public class CDB extends Investimento{
 		this.taxaRendimento = taxaRendimento;
 	}
 
+	public void setQuantMeses(int quantMeses) {
+		this.quantMeses = quantMeses;
+	}
+
+	public int getQuantMeses() {
+		return quantMeses;
+	}
+
 	@Override
 	public Double rendimento() {
 		double taxa = 1 + this.taxaRendimento;
@@ -45,6 +53,17 @@ public class CDB extends Investimento{
 		}
 
 		return valor;
+	}
+
+	@Override
+	public Double rendimentoMensal(int meses) {
+		double taxa = 1 + this.taxaRendimento;
+		Double valorRendimento = this.valor * Math.pow(taxa, meses);
+		Double lucro = valorRendimento - this.valor;
+
+		Double valorFInal = tributacoes(lucro, valorRendimento);
+
+		return valorFInal;
 	}
 
 }

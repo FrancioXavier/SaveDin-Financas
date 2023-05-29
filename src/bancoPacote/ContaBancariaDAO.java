@@ -116,6 +116,7 @@ public class ContaBancariaDAO {
             } while (!contaExiste);
             count++;
         } while (escolha == 0);
+        count = 0;
         
         idConta += 1;
         if(escolha == 1){
@@ -125,7 +126,23 @@ public class ContaBancariaDAO {
             contas.addContaInvestimento(contaInvestimento);
             return contaInvestimento;
         } else if(escolha == 3){
-            conta = new ContaPoupanca(nomeCompleto, cpf, nomeBanco, idConta);
+            Double valor;
+            while(true) {
+                try {
+                    valor = input.nextDouble();
+                    if(verificar.validaValor(valor)){
+                        break;
+                    }
+                } catch(Exception e){
+                    
+                    System.out.println("Valor inválido! tente novamente: ");
+                    valor = input.nextDouble();
+                    if(verificar.validaValor(valor)){
+                        break;
+                    }
+                }
+            }
+            conta = new ContaPoupanca(nomeCompleto, cpf, nomeBanco, idConta, valor);
         }else {
             conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco, idConta);
         }
