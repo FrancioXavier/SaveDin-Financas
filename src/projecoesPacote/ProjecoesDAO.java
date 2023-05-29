@@ -1,5 +1,6 @@
 package projecoesPacote;
 
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -35,28 +36,31 @@ public class ProjecoesDAO {
             + "Digite a quantidade de " + mensalOuAnual + ": "
         );
 
-		while(true) {
-            try {
-                valor = input.nextInt();
-                if(verificar.validaValor(valor)){
-                    break;
-                }
-            } catch(Exception e){
-                
-                System.out.println("Valor inválido! tente novamente: ");
-                valor = input.nextInt();
-                if(verificar.validaValor(valor)){
-                    break;
-                }
-            }
-        }
+		while(true){
+			try {
+				System.out.print("Digite um número inteiro: ");
+				valor = input.nextInt();
+				if(verificar.validaValor(valor)){
+					break;
+				}
+				System.out.println("O número digitado foi: " + valor);
+			} catch (InputMismatchException e) {
+				input.nextLine();
+				System.out.println("Entrada inválida. Por favor, digite um número inteiro.");
+				valor = input.nextInt();
+				if(verificar.validaValor(valor)){
+					break;
+				}
+			}
+		};
+		
 
 		if(mensalOuAnual == "meses"){
 			Integer meses = valor;
 			dados = projecao.projecao(meses, ganhos, gastos, investimentos, contas);
 			for(int i = 1; i <= valor; i++){
 				System.out.println(
-					"\nMes " + i + ": " + dados.get("Mes " + i) + "\n \n"
+					"\nMes " + i + ": " + dados.get("Mes " + i) + "\n"
 				);
 			}
 
@@ -65,11 +69,12 @@ public class ProjecoesDAO {
 			int anos = valor;
 			dados = projecao.projecao(anos, ganhos, gastos, investimentos, contas);
 			System.out.println(
-				"Ganho mensal: " + dados.get("Ganho mensal") +
-				"Gasto mensal: " + dados.get("Gasto mensal") +
-				"Gastos anuais: " + dados.get("Gastos anuais") +
-				"Ganho anual: " + dados.get("Ganho anual") +
-				"Rendimento total: " + dados.get("Rendimento total")
+				"\nGanho mensal: " + dados.get("Ganho mensal") +
+				"\nGasto mensal: " + dados.get("Gasto mensal") +
+				"\nGastos anuais: " + dados.get("Gastos anuais") +
+				"\nGanho anual: " + dados.get("Ganho anual") +
+				"\nRendimento total: " + dados.get("Rendimento total")+
+				"\n\n"
 			);
 		}
 	}

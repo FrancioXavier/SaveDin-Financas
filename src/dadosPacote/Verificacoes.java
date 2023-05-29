@@ -109,26 +109,38 @@ public class Verificacoes {
     }
 
     public boolean validaValor(Double valor) throws IllegalArgumentException {
-        if (valor < 0) {
-            throw new IllegalArgumentException("Valor inválido");
-        } else {
-            return true;
+        try {
+            if (valor < 0) {
+                throw new IllegalArgumentException("Valor inválido");
+            } else {
+                return true;
+            }
+        } catch (InputMismatchException e) {
+            return false;
         }
     }
 
     public boolean validaValor(int valor) throws IllegalArgumentException {
-        if (valor < 0) {
-            throw new IllegalArgumentException("Valor inválido");
-        } else {
-            return true;
+        try {
+            if (valor < 0) {
+                throw new IllegalArgumentException("Valor inválido");
+            } else {
+                return true;
+            }
+        } catch (InputMismatchException e) {
+            return false;
         }
     }
 
     public boolean validaValor(float valor) throws IllegalArgumentException {
-        if (valor < 0) {
-            throw new IllegalArgumentException("Valor inválido");
-        } else {
-            return true;
+        try {
+            if (valor < 0) {
+                throw new IllegalArgumentException("Valor inválido");
+            } else {
+                return true;
+            }
+        } catch (InputMismatchException e) {
+            return false;
         }
     }
 

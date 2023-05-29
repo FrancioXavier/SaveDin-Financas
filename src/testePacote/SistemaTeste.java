@@ -228,7 +228,8 @@ public class SistemaTeste {
 										}
 
 										case 2:{
-											sair = true;
+											sairConsulta = true;
+											break;
 										}
 
 										case 3:{
@@ -268,7 +269,7 @@ public class SistemaTeste {
 													} while (!sairConsulta);
 													break;
 												} case 2: {
-													sair = true;
+													sairConsulta = true;
 													break;
 												} case 3: {
 													console.limpar();
@@ -407,8 +408,10 @@ public class SistemaTeste {
 															}
 													} while (!sairConsulta);
 													sairConsulta = false;
+													break;
 												}
 											}
+											break;
 										} case 4: {
 											console.limpar();
 											menu.menuProjecoes();
@@ -461,13 +464,14 @@ public class SistemaTeste {
 													}
 												}
 											} while (!sairConsulta);
+											break;
 										}
 										default: {
 											System.out.println("Opção invalida");
 											break;
 										}
 									}
-								}while(!sair);
+								}while(!sairConsulta);
 								break;
 							}
 							case 2: {
