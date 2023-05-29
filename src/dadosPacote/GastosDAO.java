@@ -126,13 +126,13 @@ public class GastosDAO {
 				try {
 					System.out.println("Digite a quantidade de parcelas: ");
 					parcelas = input.nextInt();
-					if(!verificar.validaTaxa(parcelas)){
+					if(!verificar.validaValor(parcelas)){
 						break;
 					}
 				} catch (Exception e) {
 					System.out.println("Não foi possível cadastrar, tente outra vez: ");
 					parcelas = input.nextInt();
-					if(!verificar.validaTaxa(parcelas)){
+					if(!verificar.validaValor(parcelas)){
 						break;
 					}
 				}

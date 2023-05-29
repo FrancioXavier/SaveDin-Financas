@@ -3,6 +3,7 @@ package testePacote;
 import dadosPacote.*;
 import investimentoPacote.Investimento;
 import investimentoPacote.InvestimentoDAO;
+import projecoesPacote.ProjecoesDAO;
 import repositoriosPacote.*;
 
 import java.util.Scanner;
@@ -23,6 +24,7 @@ public class SistemaTeste {
 		ContaBancariaDAO contaBancariaDAO = new ContaBancariaDAO();
 		InvestimentoDAO investimentoDAO = new InvestimentoDAO();
 		GastosDAO gastosDAO = new GastosDAO();
+		ProjecoesDAO projecoesDAO = new ProjecoesDAO();
 
 		// Repositorios
 		RepositorioUser usuario = new RepositorioUser();
@@ -415,10 +417,38 @@ public class SistemaTeste {
 											do {
 												switch (number) {
 													case 1:{
+														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos, "meses");
+														System.out.println("\n1 - voltar");
 														
+														do {
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
 														break;
 													} case 2: {
+														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos, "anos");
+														System.out.println("\n1 - voltar");
 														
+														do {
+															number = input.nextInt();
+															switch(number){
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
 														break;
 													} case 3: {
 														sairConsulta = true;
@@ -426,7 +456,7 @@ public class SistemaTeste {
 													}
 												
 													default:{
-														
+														System.out.println("Opção invalida");
 														break;
 													}
 												}

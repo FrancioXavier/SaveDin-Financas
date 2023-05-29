@@ -104,13 +104,13 @@ public class InvestimentoDAO {
 			try {
 				System.out.println("Digite a taxa de rendimento: ");
 				floatTaxaRendimento = input.nextFloat();
-				if(verificar.validaTaxa(floatTaxaRendimento)){
+				if(verificar.validaValor(floatTaxaRendimento)){
 					break;
 				}
 			} catch (Exception e) {
 				System.out.println("\nNão foi possível cadastrar, tente outra vez: ");
 				floatTaxaRendimento = input.nextFloat();
-				if(verificar.validaTaxa(floatTaxaRendimento)){
+				if(verificar.validaValor(floatTaxaRendimento)){
 					break;
 				}
 			}
@@ -123,13 +123,13 @@ public class InvestimentoDAO {
 			try {
 				System.out.println("Digite a quantidade de meses que planeja deixar render: ");
 				quantMeses = input.nextInt();
-				if(verificar.validaTaxa(quantMeses)){
+				if(verificar.validaValor(quantMeses)){
 					break;
 				}
 			} catch (Exception e) {
 				System.out.println("\nNão foi possível cadastrar, tente outra vez: ");
 				quantMeses = input.nextInt();
-				if(verificar.validaTaxa(quantMeses)){
+				if(verificar.validaValor(quantMeses)){
 					break;
 				}
 			}

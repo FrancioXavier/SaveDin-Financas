@@ -116,8 +116,16 @@ public class Verificacoes {
         }
     }
 
-    public boolean validaTaxa(float taxa) throws IllegalArgumentException {
-        if (taxa < 0) {
+    public boolean validaValor(int valor) throws IllegalArgumentException {
+        if (valor < 0) {
+            throw new IllegalArgumentException("Valor inválido");
+        } else {
+            return true;
+        }
+    }
+
+    public boolean validaValor(float valor) throws IllegalArgumentException {
+        if (valor < 0) {
             throw new IllegalArgumentException("Valor inválido");
         } else {
             return true;

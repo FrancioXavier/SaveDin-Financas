@@ -129,6 +129,7 @@ public class ContaBancariaDAO {
             Double valor;
             while(true) {
                 try {
+                    System.out.println("Digite o valor que irá depositar: ");
                     valor = input.nextDouble();
                     if(verificar.validaValor(valor)){
                         break;

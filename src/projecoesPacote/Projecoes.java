@@ -71,8 +71,7 @@ public class Projecoes {
 		return medias;
 	}
 	public Map<String, Double> projecao(
-		int meses, 
-		int ano,
+		Integer meses,
 		RepositorioGanho ganhos, 
 		RepositorioGastos gastos,
 		RepositorioInvestimentos investimentos,
@@ -123,12 +122,12 @@ public class Projecoes {
 
 		for(GastoParcelado gasto : gastos.getGastosParcelados()){
 			gastoMensal += (gasto.getValor());
-			total -= (gasto.getValor()*gasto.getParcelas());
+			total -= (gasto.getValorParcela()*meses);
 		}
 
 		for(Investimento investimento : investimentos.getInvestimentos()){
 			ganhoMensal += investimento.rendimentoMensal(meses);
-			total += investimento.rendimento();
+			total += investimento.rendimentoMensal(meses);
 		}
 
 		for(ContaPoupanca conta : contas.getContasPoupanca()){
