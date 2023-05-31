@@ -35,6 +35,7 @@ public class InvestimentoDAO {
 		int escolha;
 		Investimento investimento;
 		boolean deuCerto = false;
+		Double valorMensal;
 
 		System.out.println(
             "------------"
@@ -100,6 +101,18 @@ public class InvestimentoDAO {
 		}while(!verificar.validaValor(valor));
 		count = 0;
 
+		do{
+			if(count < 1){
+				System.out.println("Digite o valor que planeja investir todo mes");
+			} else{
+				System.out.println("\nNão foi possível cadastrar, tente outra vez: ");
+			}
+
+			valorMensal = input.nextDouble();
+			count++;
+		}while(!verificar.validaValor(valorMensal));
+		count = 0;
+
 		while(true){
 			try {
 				System.out.println("Digite a taxa de rendimento: ");
@@ -135,6 +148,8 @@ public class InvestimentoDAO {
 			}
 		}
 
+
+
 		do {
             if (count < 1) {
                 System.out.println(
@@ -152,11 +167,11 @@ public class InvestimentoDAO {
 				int secondCount = 0;
 
 				if(escolha == 1){
-					CDB investimentoCDB = new CDB(conta, valor, data, taxaFinal, quantMeses);
+					CDB investimentoCDB = new CDB(conta, valor, data, taxaFinal, quantMeses, valorMensal);
 					investimentos.addInvestimento(investimentoCDB);
 					deuCerto = true;
 				} else if(escolha == 2){
-					TesouroPrefixado investimentoTesouroPrefixado = new TesouroPrefixado(conta, valor, data, taxaFinal, 0.0, quantMeses);
+					TesouroPrefixado investimentoTesouroPrefixado = new TesouroPrefixado(conta, valor, data, taxaFinal, 0.0, quantMeses, valorMensal);
 					investimentos.addInvestimento(investimentoTesouroPrefixado);
 
 					do {

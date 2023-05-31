@@ -131,6 +131,7 @@ public class SistemaTeste {
 													}
 													case 3: {
 														do {
+															console.limpar();
 															System.out.println(
 															"Ganhos: " + "\n" +
 															ganhos.getStringGanhos() +

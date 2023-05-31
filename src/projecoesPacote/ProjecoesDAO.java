@@ -71,6 +71,7 @@ public class ProjecoesDAO {
 			System.out.println(
 				"\nGanho mensal: " + dados.get("Ganho mensal") +
 				"\nGasto mensal: " + dados.get("Gasto mensal") +
+				"\nRendimento mensal" + dados.get("Rendimento mensal") +
 				"\nGastos anuais: " + dados.get("Gastos anuais") +
 				"\nGanho anual: " + dados.get("Ganho anual") +
 				"\nRendimento total: " + dados.get("Rendimento total")+

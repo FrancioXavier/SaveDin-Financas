@@ -64,6 +64,7 @@ public class Projecoes {
 
 		medias.put("Ganho mensal", ganhoMensal);
 		medias.put("Gasto mensal", gastoMensal);
+		medias.put("Rendimento mensal", ganhoMensal - gastoMensal);
 		medias.put("Gastos anuais", gastoAno);
 		medias.put("Ganho anual", ganhoAno);
 		medias.put("Rendimento total", total);
@@ -100,7 +101,7 @@ public class Projecoes {
 		for(Integer i = 1; i <= meses; i++){
 			String mensagem = "Mes " + i.toString();
 			Double soma = 0.0; 
-			for(ContaPoupanca conta : contas.getContasPoupanca()){
+			for(ContaPoupanca conta  : contas.getContasPoupanca()){
 				ganhoMensal += conta.rendimento(conta.getSaldo(), i);
 				soma += conta.rendimento(conta.getSaldo(), i);
 				
@@ -116,7 +117,7 @@ public class Projecoes {
 				soma += gasto.getValorParcela()*i;
 			}
 
-			medias.put(mensagem, ganhoMensal);
+			medias.put(mensagem, (ganhoMensal - gastoMensal));
 			ganhoMensal -= soma;
 		}
 

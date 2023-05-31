@@ -5,12 +5,21 @@ import bancoPacote.ContaInvestimento;
 public abstract class Investimento {
     private ContaInvestimento conta;
     Double valor;
+    Double valorMensal;
     private String data;
 
-    public Investimento(ContaInvestimento conta, Double valor, String data){
+    public Investimento(ContaInvestimento conta, Double valor, String data, Double valorMensal){
         this.conta = conta;
         this.valor = valor;
         this.data = data;
+    }
+
+    public Double getValorMensal() {
+        return valorMensal;
+    }
+
+    public void setValorMensal(Double valorMensal) {
+        this.valorMensal = valorMensal;
     }
 
     public ContaInvestimento getConta(){

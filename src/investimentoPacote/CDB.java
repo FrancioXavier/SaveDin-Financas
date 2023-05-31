@@ -7,8 +7,8 @@ public class CDB extends Investimento{
 	private Double taxaRendimento;
 	int quantMeses;
 
-	public CDB(ContaInvestimento conta, Double valor, String data, Double taxaRendimento, int quantMeses) {
-		super(conta, valor, data);
+	public CDB(ContaInvestimento conta, Double valor, String data, Double taxaRendimento, int quantMeses, Double valorMensal) {
+		super(conta, valor, data, valorMensal);
 		this.taxaRendimento = taxaRendimento;
 		this.quantMeses = quantMeses;
 	}
