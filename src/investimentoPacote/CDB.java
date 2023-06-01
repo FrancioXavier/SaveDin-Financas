@@ -1,13 +1,13 @@
 package investimentoPacote;
 
 import bancoPacote.ContaInvestimento;
-import java.lang.Math;
 
-public class CDB extends Investimento{
+public class CDB extends Investimento {
 	private Double taxaRendimento;
 	int quantMeses;
 
-	public CDB(ContaInvestimento conta, Double valor, String data, Double taxaRendimento, int quantMeses, Double valorMensal) {
+	public CDB(ContaInvestimento conta, Double valor, String data, Double taxaRendimento, int quantMeses,
+			Double valorMensal) {
 		super(conta, valor, data, valorMensal);
 		this.taxaRendimento = taxaRendimento;
 		this.quantMeses = quantMeses;
@@ -31,24 +31,44 @@ public class CDB extends Investimento{
 
 	@Override
 	public Double rendimento() {
-		double taxa = 1 + this.taxaRendimento;
-		Double valorRendimento = this.valor * Math.pow(taxa, this.quantMeses);
-		Double lucro = valorRendimento - this.valor;
+		double investimentoInicial = this.valor; // Investimento inicial
+        double aporteMensal = this.valorMensal; // Aporte mensal
+        double taxaDeJuros = this.taxaRendimento; // Taxa de juros anual (5%)
+        int meses = this.quantMeses; // Período de investimento em meses
 
-		Double valorFInal = tributacoes(lucro, valorRendimento);
+        double saldo = investimentoInicial;
+        double aporteTotal = 0.0;
+        System.out.println("Mês\tSaldo");
 
-		return valorFInal;
+        for (int i = 1; i <= meses; i++) {
+            saldo += aporteMensal;
+            aporteTotal += aporteMensal;
+            saldo *= (1 + taxaDeJuros / 12);
+        }
+		Double lucro = saldo - (investimentoInicial+aporteTotal);
+
+		if (meses <= 6) {
+			saldo -= lucro * 0.225;
+		} else if (meses <= 12) {
+			saldo -= lucro * 0.20;
+		} else if (meses <= 24) {
+			saldo -= lucro * 0.175;
+		} else if (meses > 24) {
+			saldo -= lucro * 0.15;
+		}
+
+		return saldo;
 	}
 
 	@Override
-	public Double tributacoes(Double lucro, Double valor){
-		if(this.quantMeses <= 6){
+	public Double tributacoes(Double lucro, Double valor) {
+		if (this.quantMeses <= 6) {
 			valor -= lucro * 0.225;
-		} else if(this.quantMeses <= 12){
+		} else if (this.quantMeses <= 12) {
 			valor -= lucro * 0.20;
-		} else if(this.quantMeses <= 24){
+		} else if (this.quantMeses <= 24) {
 			valor -= lucro * 0.175;
-		} else if(this.quantMeses > 24){
+		} else if (this.quantMeses > 24) {
 			valor -= lucro * 0.15;
 		}
 
@@ -57,13 +77,31 @@ public class CDB extends Investimento{
 
 	@Override
 	public Double rendimentoMensal(int meses) {
-		double taxa = 1 + this.taxaRendimento;
-		Double valorRendimento = this.valor * Math.pow(taxa, meses);
-		Double lucro = valorRendimento - this.valor;
+		double investimentoInicial = this.valor; // Investimento inicial
+        double aporteMensal = this.valorMensal; // Aporte mensal
+        double taxaDeJuros = this.taxaRendimento; // Taxa de juros anual (5%)
 
-		Double valorFInal = tributacoes(lucro, valorRendimento);
+        double saldo = investimentoInicial;
+        double aporteTotal = 0.0;
 
-		return valorFInal;
+        for (int i = 1; i <= meses; i++) {
+            saldo += aporteMensal;
+            aporteTotal += aporteMensal;
+            saldo *= (1 + taxaDeJuros / 12);
+        }
+		Double lucro = saldo - (investimentoInicial+aporteTotal);
+
+		if (meses <= 6) {
+			saldo -= lucro * 0.225;
+		} else if (meses <= 12) {
+			saldo -= lucro * 0.20;
+		} else if (meses <= 24) {
+			saldo -= lucro * 0.175;
+		} else if (meses > 24) {
+			saldo -= lucro * 0.15;
+		}
+
+		return saldo;
 	}
 
 }

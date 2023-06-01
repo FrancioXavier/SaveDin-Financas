@@ -12,6 +12,7 @@ public abstract class Investimento {
         this.conta = conta;
         this.valor = valor;
         this.data = data;
+        this.valorMensal = valorMensal;
     }
 
     public Double getValorMensal() {

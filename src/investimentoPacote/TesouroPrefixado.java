@@ -1,7 +1,6 @@
 package investimentoPacote;
 
 import bancoPacote.ContaInvestimento;
-import java.lang.Math;
 
 public class TesouroPrefixado extends Investimento{
 	private Double taxaRendimento;	
@@ -41,13 +40,32 @@ public class TesouroPrefixado extends Investimento{
 
 	@Override
 	public Double rendimento() {
-		double taxa = 1 + this.taxaRendimento;
-		Double valorRendimento = this.valor * Math.pow(taxa, this.quantMeses);
-		Double lucro = valorRendimento - this.valor;
+		double investimentoInicial = this.valor; // Investimento inicial
+        double aporteMensal = this.valorMensal; // Aporte mensal
+        double taxaDeJuros = this.taxaRendimento; // Taxa de juros anual (5%)
+        int meses = this.quantMeses; // Período de investimento em meses
 
-		Double valorFInal = tributacoes(lucro, valorRendimento);
+        double saldo = investimentoInicial;
+        double aporteTotal = 0.0;
 
-		return valorFInal;
+        for (int i = 1; i <= meses; i++) {
+            saldo += aporteMensal;
+            aporteTotal += aporteMensal;
+            saldo *= (1 + taxaDeJuros / 12);
+        }
+		Double lucro = saldo - (investimentoInicial+aporteTotal);
+
+		if (meses <= 6) {
+			saldo -= lucro * 0.225;
+		} else if (meses <= 12) {
+			saldo -= lucro * 0.20;
+		} else if (meses <= 24) {
+			saldo -= lucro * 0.175;
+		} else if (meses > 24) {
+			saldo -= lucro * 0.15;
+		}
+
+		return saldo;
 	}
 
 	@Override
@@ -68,13 +86,31 @@ public class TesouroPrefixado extends Investimento{
 
 	@Override
 	public Double rendimentoMensal(int meses) {
-		double taxa = 1 + this.taxaRendimento;
-		Double valorRendimento = this.valor * Math.pow(taxa, meses);
-		Double lucro = valorRendimento - this.valor;
+		double investimentoInicial = this.valor; // Investimento inicial
+        double aporteMensal = this.valorMensal; // Aporte mensal
+        double taxaDeJuros = this.taxaRendimento; // Taxa de juros anual (5%)
 
-		Double valorFInal = tributacoes(lucro, valorRendimento);
+        double saldo = investimentoInicial;
+        double aporteTotal = 0.0;
 
-		return valorFInal;
+        for (int i = 1; i <= meses; i++) {
+            saldo += aporteMensal;
+            aporteTotal += aporteMensal;
+            saldo *= (1 + taxaDeJuros / 12);
+        }
+		Double lucro = saldo - (investimentoInicial+aporteTotal);
+
+		if (meses <= 6) {
+			saldo -= lucro * 0.225;
+		} else if (meses <= 12) {
+			saldo -= lucro * 0.20;
+		} else if (meses <= 24) {
+			saldo -= lucro * 0.175;
+		} else if (meses > 24) {
+			saldo -= lucro * 0.15;
+		}
+
+		return saldo;
 	}
 
 }
