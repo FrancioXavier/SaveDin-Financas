@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import dadosPacote.Verificacoes;
 import dadosPacote.LimparConsole;
+import dadosPacote.Usuario;
 
 public class ContaBancariaDAO {
     Verificacoes verificar = new Verificacoes();
@@ -15,7 +16,7 @@ public class ContaBancariaDAO {
 
     private static Integer idConta = 0;
 
-    public ContaBancaria cadastro(RepositorioContasBancarias contas){
+    public ContaBancaria cadastro(RepositorioContasBancarias contas, Usuario user){
         String nomeCompleto;
         String cpf;
         String nomeBanco = "";
@@ -23,6 +24,7 @@ public class ContaBancariaDAO {
         int count = 0;
         boolean contaExiste;
         ContaBancaria conta;
+        int idUser = user.getId();
 
         System.out.println(
             "------------"
@@ -120,9 +122,9 @@ public class ContaBancariaDAO {
         
         idConta += 1;
         if(escolha == 1){
-            conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco, idConta);
+            conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco, idConta, idUser);
         } else if(escolha == 2){
-            ContaInvestimento contaInvestimento = new ContaInvestimento(nomeCompleto, cpf, nomeBanco, idConta);
+            ContaInvestimento contaInvestimento = new ContaInvestimento(nomeCompleto, cpf, nomeBanco, idConta, idUser);
             contas.addContaInvestimento(contaInvestimento);
             return contaInvestimento;
         } else if(escolha == 3){
@@ -143,9 +145,9 @@ public class ContaBancariaDAO {
                     }
                 }
             }
-            conta = new ContaPoupanca(nomeCompleto, cpf, nomeBanco, idConta, valor);
+            conta = new ContaPoupanca(nomeCompleto, cpf, nomeBanco, idConta, valor, idUser);
         }else {
-            conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco, idConta);
+            conta = new ContaCorrente(nomeCompleto, cpf, nomeBanco, idConta, idUser);
         }
 
         return conta;

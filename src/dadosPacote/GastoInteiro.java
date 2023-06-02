@@ -5,16 +5,26 @@ public class GastoInteiro implements Gastos{
 	String titulo;
 	Double valor;
 	String data;
-	public GastoInteiro(String fixoOuVariavel, String titulo, Double valor, String data) {
+	int idUser;
+	public GastoInteiro(String fixoOuVariavel, String titulo, Double valor, String data, int idUser) {
 		this.fixoOuVariavel = fixoOuVariavel;
 		this.titulo = titulo;
 		this.valor = valor;
 		this.data = data;
+		this.idUser = idUser;
 	}
 
 	@Override
 	public String getData() {
 		return this.data;
+	}
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
 	@Override

@@ -7,12 +7,22 @@ public abstract class Investimento {
     Double valor;
     Double valorMensal;
     private String data;
+    private int idUser;
 
-    public Investimento(ContaInvestimento conta, Double valor, String data, Double valorMensal){
+    public Investimento(ContaInvestimento conta, Double valor, String data, Double valorMensal, int idUser){
         this.conta = conta;
         this.valor = valor;
         this.data = data;
         this.valorMensal = valorMensal;
+        this.idUser = idUser;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public Double getValorMensal() {

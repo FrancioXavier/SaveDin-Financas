@@ -13,7 +13,7 @@ public class GastosDAO {
     LimparConsole console = new LimparConsole();
 	RepositorioGastos gastos = new RepositorioGastos();
 
-	public String cadastro(RepositorioGastos gastos, Saldo saldo, RepositorioContasBancarias contas){
+	public String cadastro(RepositorioGastos gastos, Saldo saldo, RepositorioContasBancarias contas, Usuario user){
 		int escolhaGasto = 0;
 		int count = 0;
 		boolean valeu = false;
@@ -23,6 +23,7 @@ public class GastosDAO {
 		Double valorParcela;
 		String tipo = "";
 		Double valor;
+		int idUser = user.getId();
 
 		System.out.println(
             "------------"
@@ -150,7 +151,7 @@ public class GastosDAO {
 			}while(!verificar.validaValor(valorParcela));
 			count = 0;
 			
-			GastoParcelado novoGasto = new GastoParcelado(data, titulo, conta, parcelas, valorParcela);
+			GastoParcelado novoGasto = new GastoParcelado(data, titulo, conta, parcelas, valorParcela, idUser);
 			gastos.addGastoParcelado(novoGasto);
 			saldo.subtractSaldo(valorParcela);
 			return novoGasto.getTipoGasto();
@@ -229,7 +230,7 @@ public class GastosDAO {
 				count++;	
 			}while(!verificar.validaValor(valor));
 			count = 0;
-			GastoInteiro novoGasto = new GastoInteiro(tipo, titulo, valor, data);
+			GastoInteiro novoGasto = new GastoInteiro(tipo, titulo, valor, data, idUser);
 			gastos.addGastoInteiro(novoGasto);
 			saldo.subtractSaldo(valor);
 			return novoGasto.getTipoGasto();

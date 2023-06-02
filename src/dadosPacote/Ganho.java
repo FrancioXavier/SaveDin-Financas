@@ -4,15 +4,25 @@ public class Ganho {
     private Double valor;
     private String tipo;
     private String titulo;
+    private int idUser;
 
-    public Ganho(Double valor, String tipo, String titulo){
+    public Ganho(Double valor, String tipo, String titulo, int idUser){
         this.valor = valor;
         this.tipo = tipo;
-        this.titulo = titulo;        
+        this.titulo = titulo;
+        this.idUser = idUser;        
     }
 
     public Double getValor(){
         return this.valor;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getTipo(){

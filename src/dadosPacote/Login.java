@@ -68,8 +68,8 @@ public class Login {
 		return user;
 	}
 
-	public Usuario cadastro(RepositorioUser usuarios) {
-		return usuarioDao.cadastro(usuarios);
+	public Usuario cadastro(RepositorioUser usuarios, RepositorioSaldos saldos) {
+		return usuarioDao.cadastro(usuarios, saldos);
 	}
 
 	public boolean isLogado() {

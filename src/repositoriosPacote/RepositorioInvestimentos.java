@@ -14,14 +14,16 @@ public class RepositorioInvestimentos {
 		return this.investimentos;
 	}
 
-	public String getStringInvestimetos(){
+	public String getStringInvestimetos(int idUser){
 		String mensagem = "";
 
 		for(Investimento investimento : this.investimentos){
-			mensagem =  "\nTitular da conta: " + investimento.getConta().getNomeCompleto().toString() +
-						"\nBanco: " + investimento.getConta().getNomeBanco() +  
-						"\nValor atual: " + investimento.getValor().toString() + 
-					    "\nData: " + investimento.getData();
+			if(investimento.getIdUser() == idUser){
+				mensagem =  "\nTitular da conta: " + investimento.getConta().getNomeCompleto().toString() +
+							"\nBanco: " + investimento.getConta().getNomeBanco() +  
+							"\nValor atual: " + investimento.getValor().toString() + 
+							"\nData: " + investimento.getData();
+			}
 		}
 
 		return mensagem;

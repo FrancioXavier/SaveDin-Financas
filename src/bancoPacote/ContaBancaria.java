@@ -5,16 +5,25 @@ public abstract class ContaBancaria {
     private String cpf;
     private String nomeBanco;
     private Integer id;
+    private int idUser;
 
-    public ContaBancaria(String nomeCompleto, String cpf, String nomeBanco, Integer id){
+    public ContaBancaria(String nomeCompleto, String cpf, String nomeBanco, Integer id, int idUser){
         this.cpf = cpf;
         this.nomeBanco = nomeBanco;
         this.nomeCompleto = nomeCompleto;
         this.id = id;
+        this.idUser = idUser;
     }
 
     public String getCpf() {
         return this.cpf;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public Integer getId() {

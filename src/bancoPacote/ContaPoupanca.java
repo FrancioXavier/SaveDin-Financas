@@ -2,8 +2,8 @@ package bancoPacote;
 
 public class ContaPoupanca extends ContaBancaria{
     private Double saldo;
-    public ContaPoupanca(String nomeCompleto, String cpf, String nomeBanco, Integer id, Double saldo) {
-        super(nomeCompleto, cpf, nomeBanco, id);
+    public ContaPoupanca(String nomeCompleto, String cpf, String nomeBanco, Integer id, Double saldo, int idUser) {
+        super(nomeCompleto, cpf, nomeBanco, id, idUser);
         this.saldo = saldo;
     }
 

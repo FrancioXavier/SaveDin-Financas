@@ -15,7 +15,6 @@ public class SistemaTeste {
 	public static void main(String[] args) {
 
 		// Classes
-		Saldo saldo = new Saldo(0.0);
 		Menus menu = new Menus();
 		Login login = new Login();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -32,6 +31,7 @@ public class SistemaTeste {
 		RepositorioContasBancarias contas = new RepositorioContasBancarias();
 		RepositorioInvestimentos investimentos = new RepositorioInvestimentos();
 		RepositorioGastos gastos = new RepositorioGastos();
+		RepositorioSaldos saldos = new RepositorioSaldos();
 
 		// Libs
 		Scanner input = new Scanner(System.in);
@@ -65,7 +65,7 @@ public class SistemaTeste {
 					}
 					case 2: {
 
-						usuario.addUser(login.cadastro(usuario));
+						usuario.addUser(login.cadastro(usuario, saldos));
 						break;
 					}
 					case 3: {
@@ -109,7 +109,7 @@ public class SistemaTeste {
 														do {
 															console.limpar();
 															System.out.println(
-																"\nSeu saldo é: "+ "R$" + saldo.getSaldo() 
+																"\nSeu saldo é: "+ "R$" + saldos.getSaldo(userLogado.getId()).getSaldo().toString()
 																+ "\n 1 - voltar");
 															number = input.nextInt();
 															switch(number){
@@ -134,7 +134,7 @@ public class SistemaTeste {
 															console.limpar();
 															System.out.println(
 															"Ganhos: " + "\n" +
-															ganhos.getStringGanhos() +
+															ganhos.getStringGanhos(userLogado.getId()) +
 															"\n 1 - voltar");
 															number = input.nextInt();
 															switch(number){
@@ -156,7 +156,7 @@ public class SistemaTeste {
 															console.limpar();
 															System.out.println(
 															"Contas: " + "\n" +
-															contas.getStringContas() + 
+															contas.getStringContas(userLogado.getId()) + 
 															"\n 1 - voltar");
 															number = input.nextInt();
 															switch(number){
@@ -178,7 +178,7 @@ public class SistemaTeste {
 															console.limpar();
 															System.out.println(
 															"Investimentos: " + "\n" +
-															investimentos.getStringInvestimetos() + 
+															investimentos.getStringInvestimetos(userLogado.getId()) + 
 															"\n 1 - voltar");
 															number = input.nextInt();
 															switch(number){
@@ -200,7 +200,7 @@ public class SistemaTeste {
 															console.limpar();
 															System.out.println(
 																"Gastos: \n" +
-																gastos.getGastos() +
+																gastos.getGastos(userLogado.getId()) +
 																"\n 1 - voltar"
 															);
 															number = input.nextInt();
@@ -241,7 +241,7 @@ public class SistemaTeste {
 											switch(number){
 												case 1: {
 													console.limpar();
-													Ganho ganho = ganhoDAO.cadastro(ganhos, saldo);
+													Ganho ganho = ganhoDAO.cadastro(ganhos, saldos.getSaldo(userLogado.getId()), userLogado);
 													ganhos.addGanho(ganho);
 													do {
 														System.out.println("----------------------"
@@ -274,7 +274,7 @@ public class SistemaTeste {
 													break;
 												} case 3: {
 													console.limpar();
-													ContaBancaria novaContaBancaria = contaBancariaDAO.cadastro(contas);
+													ContaBancaria novaContaBancaria = contaBancariaDAO.cadastro(contas, userLogado);
 													contas.addConta(novaContaBancaria);
 
 													do {
@@ -325,7 +325,7 @@ public class SistemaTeste {
 														break;
 													} else{
 														console.limpar();
-														Investimento investimento = investimentoDAO.cadastro(investimentos, contas);
+														Investimento investimento = investimentoDAO.cadastro(investimentos, contas, userLogado);
 														do {
 															System.out.println(
 																"----------------------"
@@ -357,7 +357,7 @@ public class SistemaTeste {
 												}
 												case 5: {
 													console.limpar();
-													String parceladoOuInteiro = gastosDAO.cadastro(gastos, saldo, contas);
+													String parceladoOuInteiro = gastosDAO.cadastro(gastos, saldos.getSaldo(userLogado.getId()), contas, userLogado);
 													
 													do {
 														if(parceladoOuInteiro == "Gasto inteiro"){
@@ -421,7 +421,7 @@ public class SistemaTeste {
 											do {
 												switch (number) {
 													case 1:{
-														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos, "meses");
+														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos, "meses", userLogado.getId());
 														System.out.println("\n1 - voltar");
 														
 														do {
@@ -438,7 +438,7 @@ public class SistemaTeste {
 														} while (!sairConsulta);
 														break;
 													} case 2: {
-														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos, "anos");
+														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos, "anos", userLogado.getId());
 														System.out.println("\n1 - voltar");
 														
 														do {

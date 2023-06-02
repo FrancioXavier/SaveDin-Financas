@@ -25,7 +25,8 @@ public class ProjecoesDAO {
 		RepositorioGanho ganhos,
 		RepositorioGastos gastos,
 		RepositorioInvestimentos investimentos,
-		String mensalOuAnual
+		String mensalOuAnual,
+		int idUser
 	){
 		int valor;
 		Map<String, Double> dados;
@@ -57,7 +58,7 @@ public class ProjecoesDAO {
 
 		if(mensalOuAnual == "meses"){
 			Integer meses = valor;
-			dados = projecao.projecao(meses, ganhos, gastos, investimentos, contas);
+			dados = projecao.projecao(meses, ganhos, gastos, investimentos, contas, idUser);
 			for(int i = 1; i <= valor; i++){
 				System.out.println(
 					"\nMes " + i + ": " + dados.get("Mes " + i) + "\n"
@@ -67,7 +68,7 @@ public class ProjecoesDAO {
 			System.out.println("\nTotal: " + dados.get("Total"));
 		} else{
 			int anos = valor;
-			dados = projecao.projecao(anos, ganhos, gastos, investimentos, contas);
+			dados = projecao.projecao(anos, ganhos, gastos, investimentos, contas, idUser);
 			System.out.println(
 				"\nGanho mensal: " + dados.get("Ganho mensal") +
 				"\nGasto mensal: " + dados.get("Gasto mensal") +

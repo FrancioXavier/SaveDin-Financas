@@ -32,16 +32,18 @@ public class RepositorioContasBancarias {
         return this.contasInvestimento;
     }
 
-    public String getStringContas(){
+    public String getStringContas(int idUser){
         String mensagem = "";
 
         for(ContaBancaria conta : this.contas){
-            mensagem += "\nNome Completo: " + conta.getNomeCompleto().toString() + 
+            if(conta.getIdUser() == idUser){
+                mensagem += "\nNome Completo: " + conta.getNomeCompleto().toString() + 
                         "\nCpf: " + conta.getCpf() + 
                         "\nNome do Banco: " + conta.getNomeBanco().toString() +
                         "\nId: " + conta.getId().toString() +
                         "\nTipo da conta: " + conta.getTipoConta() +
                         "\n \n";
+            }
         }
 
         return mensagem;

@@ -1,5 +1,6 @@
 package dadosPacote;
 
+import repositoriosPacote.RepositorioSaldos;
 import repositoriosPacote.RepositorioUser;
 
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class UsuarioDAO {
 
     private static int idUser = 0;
 
-    public Usuario cadastro(RepositorioUser usuarios) {
+    public Usuario cadastro(RepositorioUser usuarios, RepositorioSaldos saldos) {
         String nome;
         String email;
         String senha;
@@ -64,6 +65,9 @@ public class UsuarioDAO {
 
         idUser += 1;
         Usuario usuario = new Usuario(idUser, nome, email, senha);
+        Saldo UserSaldo = new Saldo(0.0);
+        UserSaldo.setIdUser(idUser);
+        saldos.addSaldo(idUser, UserSaldo);
 
         console.limpar();
         System.out.println("--------------------------------------------------------------------------"

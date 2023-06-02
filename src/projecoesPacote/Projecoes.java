@@ -20,7 +20,8 @@ public class Projecoes {
 		RepositorioGanho ganhos, 
 		RepositorioGastos gastos,
 		RepositorioInvestimentos investimentos,
-		RepositorioContasBancarias contas
+		RepositorioContasBancarias contas,
+		int idUser
 	){
 		Double ganhoMensal = 0.0;
 		Double ganhoAno = 0.0;
@@ -31,35 +32,45 @@ public class Projecoes {
 		Map<String, Double> medias = new HashMap<String, Double>();
 
 		for(Ganho ganho : ganhos.getGanhos()){
-			if(ganho.getTipo() == "fixo"){
-				ganhoMensal += ganho.getValor();
-				ganhoAno += ganho.getValor()*(12*anos);
-				total += ganho.getValor()*(12*anos);
-			}
+			if(ganho.getIdUser() == idUser){
+				if(ganho.getTipo() == "fixo"){
+					ganhoMensal += ganho.getValor();
+					ganhoAno += ganho.getValor()*(12*anos);
+					total += ganho.getValor()*(12*anos);
+				}
+			}	
 		}
 
 		for(GastoInteiro gasto : gastos.getGastosInteiros()){
-			if(gasto.getFixoOuVariavel() == "fixo"){
-				gastoMensal += gasto.getValor();
-				gastoAno += (gasto.getValor()*(12*anos))/anos;
-				total -= (gasto.getValor()*(12*anos));
+			if(gasto.getIdUser() == idUser){
+				if(gasto.getFixoOuVariavel() == "fixo"){
+					gastoMensal += gasto.getValor();
+					gastoAno += (gasto.getValor()*(12*anos))/anos;
+					total -= (gasto.getValor()*(12*anos));
+				}
 			}
 		}
 
 		for(GastoParcelado gasto : gastos.getGastosParcelados()){
-			gastoAno += gasto.getValor();
-			gastoMensal += (gasto.getValor())/anos*12;
-			total -= (gasto.getValor()*gasto.getParcelas())/anos*12;
+			if(gasto.getIdUser() == idUser){
+				gastoAno += gasto.getValor();
+				gastoMensal += (gasto.getValor())/anos*12;
+				total -= (gasto.getValor()*gasto.getParcelas())/anos*12;
+			}
 		}
 
 		for(Investimento investimento : investimentos.getInvestimentos()){
-			ganhoAno += investimento.rendimento();
-			total += investimento.rendimento();
+			if(investimento.getIdUser() == idUser){
+				ganhoAno += investimento.rendimento();
+				total += investimento.rendimento();
+			}
 		}
 
 		for(ContaPoupanca conta : contas.getContasPoupanca()){
-			ganhoAno += conta.rendimento(conta.getSaldo(), anos*12);
-			total += conta.rendimento(conta.getSaldo(), anos*12);
+			if(conta.getIdUser() == idUser){
+				ganhoAno += conta.rendimento(conta.getSaldo(), anos*12);
+				total += conta.rendimento(conta.getSaldo(), anos*12);				
+			}
 		}
 
 		medias.put("Ganho mensal", ganhoMensal);
@@ -76,7 +87,8 @@ public class Projecoes {
 		RepositorioGanho ganhos, 
 		RepositorioGastos gastos,
 		RepositorioInvestimentos investimentos,
-		RepositorioContasBancarias contas
+		RepositorioContasBancarias contas,
+		int idUser
 	){
 		Map<String, Double> medias = new HashMap<String, Double>();
 
@@ -85,16 +97,20 @@ public class Projecoes {
 		Double total = 0.0;
 
 		for(Ganho ganho : ganhos.getGanhos()){
-			if(ganho.getTipo() == "fixo"){
-				ganhoMensal += ganho.getValor();
-				total += ganho.getValor()*meses;
+			if(ganho.getIdUser() == idUser){
+				if(ganho.getTipo() == "fixo"){
+					ganhoMensal += ganho.getValor();
+					total += ganho.getValor()*meses;
+				}
 			}
 		}
 
 		for(GastoInteiro gasto : gastos.getGastosInteiros()){
-			if(gasto.getFixoOuVariavel() == "fixo"){
-				gastoMensal += gasto.getValor();
-				total -= (gasto.getValor()*meses);
+			if(gasto.getIdUser() == idUser){
+				if(gasto.getFixoOuVariavel() == "fixo"){
+					gastoMensal += gasto.getValor();
+					total -= (gasto.getValor()*meses);
+				}
 			}
 		}
 
@@ -102,19 +118,25 @@ public class Projecoes {
 			String mensagem = "Mes " + i.toString();
 			Double soma = 0.0; 
 			for(ContaPoupanca conta  : contas.getContasPoupanca()){
-				ganhoMensal += conta.rendimento(conta.getSaldo(), i);
-				soma += conta.rendimento(conta.getSaldo(), i);
+				if(conta.getIdUser() == idUser){
+					ganhoMensal += conta.rendimento(conta.getSaldo(), i);
+					soma += conta.rendimento(conta.getSaldo(), i);				
+				}
 				
 			}
 
 			for(Investimento investimento : investimentos.getInvestimentos()){
-				ganhoMensal += investimento.rendimentoMensal(i);
-				soma += investimento.rendimentoMensal(i);
+				if(investimento.getIdUser() == idUser){
+					ganhoMensal += investimento.rendimentoMensal(i);
+					soma += investimento.rendimentoMensal(i);				
+				}
 			}
 
 			for(GastoParcelado gasto : gastos.getGastosParcelados()){
-				gastoMensal += gasto.getValorParcela()*i;
-				soma += gasto.getValorParcela()*i;
+				if(gasto.getIdUser() == idUser){
+					gastoMensal += gasto.getValorParcela()*i;
+					soma += gasto.getValorParcela()*i;
+				}
 			}
 
 			medias.put(mensagem, (ganhoMensal - gastoMensal));
@@ -122,18 +144,24 @@ public class Projecoes {
 		}
 
 		for(GastoParcelado gasto : gastos.getGastosParcelados()){
-			gastoMensal += (gasto.getValor());
-			total -= (gasto.getValorParcela()*meses);
+			if(gasto.getIdUser() == idUser){
+				gastoMensal += (gasto.getValor());
+				total -= (gasto.getValorParcela()*meses);				
+			}
 		}
 
 		for(Investimento investimento : investimentos.getInvestimentos()){
-			ganhoMensal += investimento.rendimentoMensal(meses);
-			total += investimento.rendimentoMensal(meses);
+			if(investimento.getIdUser() == idUser){
+				ganhoMensal += investimento.rendimentoMensal(meses);
+				total += investimento.rendimentoMensal(meses);
+			}
 		}
 
 		for(ContaPoupanca conta : contas.getContasPoupanca()){
-			ganhoMensal += conta.rendimento(conta.getSaldo(), meses);
-			total += conta.rendimento(conta.getSaldo(), meses);
+			if(conta.getIdUser() == idUser){
+				ganhoMensal += conta.rendimento(conta.getSaldo(), meses);
+				total += conta.rendimento(conta.getSaldo(), meses);				
+			}
 		}
 
 		medias.put("Total", total);

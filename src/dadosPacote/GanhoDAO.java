@@ -9,14 +9,14 @@ public class GanhoDAO {
 
     Scanner input = new Scanner(System.in);
     LimparConsole console = new LimparConsole();
-    RepositorioGanho ganhos = new RepositorioGanho();
 
-    public Ganho cadastro(RepositorioGanho ganhos, Saldo saldo){
+    public Ganho cadastro(RepositorioGanho ganhos, Saldo saldo, Usuario user){
         Double valor = -1.0;
         int count = 0;
         int valorTipo;
         String tipo = "";
         String titulo;
+        int idUser = user.getId();
         
         System.out.println(
             "------------"
@@ -82,7 +82,7 @@ public class GanhoDAO {
         count = 0;
 
 
-        Ganho ganho = new Ganho(valor, tipo, titulo);
+        Ganho ganho = new Ganho(valor, tipo, titulo, idUser);
         return ganho;
     }
 }

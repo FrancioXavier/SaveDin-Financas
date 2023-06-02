@@ -9,12 +9,14 @@ public class GastoParcelado implements Gastos {
 	Integer parcelas;
 	Double valorParcela;
 	Double valor;
+	int idUser;
 	public GastoParcelado(
 		String data, 
 		String titulo, 
 		ContaBancaria conta, 
 		Integer parcelas, 
-		Double valorParcelas
+		Double valorParcelas,
+		int idUser
 	){
 		this.data = data;
 		this.titulo = titulo;
@@ -22,11 +24,20 @@ public class GastoParcelado implements Gastos {
 		this.parcelas = parcelas;
 		this.valorParcela = valorParcelas;
 		this.valor = valorParcelas * parcelas;
+		this.idUser = idUser;
 	}
 
 	@Override
 	public String getData() {
 		return this.data;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public int getIdUser() {
+		return idUser;
 	}
 
 	@Override

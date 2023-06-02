@@ -9,6 +9,7 @@ import java.util.Scanner;
 import bancoPacote.ContaInvestimento;
 import dadosPacote.Verificacoes;
 import dadosPacote.LimparConsole;
+import dadosPacote.Usuario;
 
 public class InvestimentoDAO {
 	Verificacoes verificar = new Verificacoes();
@@ -19,7 +20,7 @@ public class InvestimentoDAO {
 
 	ArrayList<Investimento> listaInvestimentos = investimentos.getInvestimentos();
 
-	public Investimento cadastro(RepositorioInvestimentos investimentos, RepositorioContasBancarias contas) {
+	public Investimento cadastro(RepositorioInvestimentos investimentos, RepositorioContasBancarias contas, Usuario user) {
 		ArrayList<ContaInvestimento> listaContas = contas.getContasInvestimento();
 
 		Double valor;
@@ -36,6 +37,7 @@ public class InvestimentoDAO {
 		Investimento investimento;
 		boolean deuCerto = false;
 		Double valorMensal;
+		int idUser = user.getId();
 
 		System.out.println(
 				"------------"
@@ -163,12 +165,12 @@ public class InvestimentoDAO {
 				int secondCount = 0;
 
 				if (escolha == 1) {
-					CDB investimentoCDB = new CDB(conta, valor, data, taxaFinal, quantMeses, valorMensal);
+					CDB investimentoCDB = new CDB(conta, valor, data, taxaFinal, quantMeses, valorMensal, idUser);
 					investimentos.addInvestimento(investimentoCDB);
 					deuCerto = true;
 				} else if (escolha == 2) {
 					TesouroPrefixado investimentoTesouroPrefixado = new TesouroPrefixado(conta, valor, data, taxaFinal,
-							0.0, quantMeses, valorMensal);
+							0.0, quantMeses, valorMensal, idUser);
 					investimentos.addInvestimento(investimentoTesouroPrefixado);
 
 					do {
