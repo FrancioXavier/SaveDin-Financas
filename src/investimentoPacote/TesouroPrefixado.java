@@ -8,8 +8,8 @@ public class TesouroPrefixado extends Investimento {
 	private int quantMeses;
 
 	public TesouroPrefixado(ContaInvestimento conta, Double valor, String data, Double taxaRendimento, Double taxaAdm,
-			int quantMeses, Double valorMensal, int idUser) {
-		super(conta, valor, data, valorMensal, idUser);
+			int quantMeses, Double valorMensal, int idUser, int id) {
+		super(conta, valor, data, valorMensal, idUser, id);
 		this.taxaRendimento = taxaRendimento;
 		this.taxaAdm = taxaAdm;
 		this.quantMeses = quantMeses;

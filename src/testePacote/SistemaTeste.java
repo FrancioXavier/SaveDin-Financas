@@ -92,27 +92,29 @@ public class SistemaTeste {
 								boolean sairConsulta = false;
 								boolean sair = false;
 
-								do{
+								do {
 									console.limpar();
 									menu.menuSavedin();
 									number = input.nextInt();
 
-									switch(number){	
-										case 1: {	
-																				
+									switch (number) {
+										case 1: {
+
 											do {
 												console.limpar();
 												menu.menuConsultas();
 												number = input.nextInt();
-												switch(number){
+												switch (number) {
 													case 1: {
 														do {
 															console.limpar();
 															System.out.println(
-																"\nSeu saldo é: "+ "R$" + saldos.getSaldo(userLogado.getId()).getSaldo().toString()
-																+ "\n 1 - voltar");
+																	"\nSeu saldo é: " + "R$"
+																			+ saldos.getSaldo(userLogado.getId())
+																					.getSaldo().toString()
+																			+ "\n 1 - voltar");
 															number = input.nextInt();
-															switch(number){
+															switch (number) {
 																case 1: {
 																	sairConsulta = true;
 																	break;
@@ -133,33 +135,11 @@ public class SistemaTeste {
 														do {
 															console.limpar();
 															System.out.println(
-															"Ganhos: " + "\n" +
-															ganhos.getStringGanhos(userLogado.getId()) +
-															"\n 1 - voltar");
+																	"Ganhos: " + "\n" +
+																			ganhos.getStringGanhos(userLogado.getId()) +
+																			"\n 1 - voltar");
 															number = input.nextInt();
-															switch(number){
-																case 1: {
-																	sairConsulta = true;
-																	break;
-																}
-																default: {
-																	System.out.println("Opção invalida");
-																	break;
-																}
-															}
-														} while (!sairConsulta);
-														sairConsulta = false;
-														break; 
-													}
-													case 4: {
-														do {
-															console.limpar();
-															System.out.println(
-															"Contas: " + "\n" +
-															contas.getStringContas(userLogado.getId()) + 
-															"\n 1 - voltar");
-															number = input.nextInt();
-															switch(number){
+															switch (number) {
 																case 1: {
 																	sairConsulta = true;
 																	break;
@@ -173,15 +153,15 @@ public class SistemaTeste {
 														sairConsulta = false;
 														break;
 													}
-													case 5:{
+													case 4: {
 														do {
 															console.limpar();
 															System.out.println(
-															"Investimentos: " + "\n" +
-															investimentos.getStringInvestimetos(userLogado.getId()) + 
-															"\n 1 - voltar");
+																	"Contas: " + "\n" +
+																			contas.getStringContas(userLogado.getId()) +
+																			"\n 1 - voltar");
 															number = input.nextInt();
-															switch(number){
+															switch (number) {
 																case 1: {
 																	sairConsulta = true;
 																	break;
@@ -192,19 +172,42 @@ public class SistemaTeste {
 																}
 															}
 														} while (!sairConsulta);
-														sairConsulta=false;
+														sairConsulta = false;
+														break;
+													}
+													case 5: {
+														do {
+															console.limpar();
+															System.out.println(
+																	"Investimentos: " + "\n" +
+																			investimentos.getStringInvestimetos(
+																					userLogado.getId())
+																			+
+																			"\n 1 - voltar");
+															number = input.nextInt();
+															switch (number) {
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
+														sairConsulta = false;
 														break;
 													}
 													case 6: {
 														do {
 															console.limpar();
 															System.out.println(
-																"Gastos: \n" +
-																gastos.getGastos(userLogado.getId()) +
-																"\n 1 - voltar"
-															);
+																	"Gastos: \n" +
+																			gastos.getGastos(userLogado.getId()) +
+																			"\n 1 - voltar");
 															number = input.nextInt();
-															switch(number){
+															switch (number) {
 																case 1: {
 																	sairConsulta = true;
 																	break;
@@ -222,81 +225,87 @@ public class SistemaTeste {
 														break;
 													}
 												}
-											
+
 											} while (!sairConsulta);
 											sairConsulta = false;
 											break;
 										}
 
-										case 2:{
+										case 2: {
 											sairConsulta = true;
 											break;
 										}
 
-										case 3:{
+										case 3: {
 											console.limpar();
 											menu.menuCadastro();
 											number = input.nextInt();
 
-											switch(number){
+											switch (number) {
 												case 1: {
 													console.limpar();
-													Ganho ganho = ganhoDAO.cadastro(ganhos, saldos.getSaldo(userLogado.getId()), userLogado);
+													Ganho ganho = ganhoDAO.cadastro(ganhos,
+															saldos.getSaldo(userLogado.getId()), userLogado);
 													ganhos.addGanho(ganho);
 													do {
 														System.out.println("----------------------"
-																		+ "\n| Ganho Adicionado |\n"
-																		+ "----------------------"
-																		+ "\n Ganho: "
-																		+ "\n titulo: " 
-																		+ ganho.getTitulo()
-																		+ "\n Tipo: "
-																		+ ganho.getTipo()
-																		+ "\n Valor: "
-																		+ ganho.getValor()
-																		+ "\n 1-voltar");
-														
+																+ "\n| Ganho Adicionado |\n"
+																+ "----------------------"
+																+ "\n Ganho: "
+																+ "\n titulo: "
+																+ ganho.getTitulo()
+																+ "\n Tipo: "
+																+ ganho.getTipo()
+																+ "\n Valor: "
+																+ ganho.getValor()
+																+ "\n 1-voltar");
+
 														number = input.nextInt();
-														switch(number){
+														switch (number) {
 															case 1: {
 																sairConsulta = true;
 																break;
-															}default: {
+															}
+															default: {
 																System.out.println("Opção invalida");
 																break;
 															}
 														}
-														
+
 													} while (!sairConsulta);
 													break;
-												} case 2: {
+												}
+												case 2: {
 													sairConsulta = true;
 													break;
-												} case 3: {
+												}
+												case 3: {
 													console.limpar();
-													ContaBancaria novaContaBancaria = contaBancariaDAO.cadastro(contas, userLogado);
+													ContaBancaria novaContaBancaria = contaBancariaDAO.cadastro(contas,
+															userLogado);
 													contas.addConta(novaContaBancaria);
 
 													do {
 														System.out.println(
-															"----------------------"
-															+ "\n| Conta Adicionada |\n"
-															+ "----------------------"
-															+ "\nNome do banco: "
-															+ novaContaBancaria.getNomeBanco()
-															+ "\nNome do titular: "
-															+ novaContaBancaria.getNomeCompleto()
-															+ "\nTipo da conta: "
-															+ novaContaBancaria.getTipoConta()
-															+ contas.getContasInvestimento().size()
-															+ "\n1-voltar");
-														
+																"----------------------"
+																		+ "\n| Conta Adicionada |\n"
+																		+ "----------------------"
+																		+ "\nNome do banco: "
+																		+ novaContaBancaria.getNomeBanco()
+																		+ "\nNome do titular: "
+																		+ novaContaBancaria.getNomeCompleto()
+																		+ "\nTipo da conta: "
+																		+ novaContaBancaria.getTipoConta()
+																		+ contas.getContasInvestimento().size()
+																		+ "\n1-voltar");
+
 														number = input.nextInt();
-														switch(number){
+														switch (number) {
 															case 1: {
 																sair = true;
 																break;
-															}default: {
+															}
+															default: {
 																System.out.println("Opção invalida");
 																break;
 															}
@@ -305,161 +314,267 @@ public class SistemaTeste {
 													} while (!sair);
 													sairConsulta = false;
 													break;
-												} case 4: {
-													if(contas.getContasInvestimento().size() == 0){
+												}
+												case 4: {
+													if (contas.getContasInvestimento().size() == 0) {
 														console.limpar();
 														do {
 															System.out.println(
-																"Nenhuma conta de investimentos cadastrada!" +
-																"\n1 - voltar"
-															);
-															
+																	"Nenhuma conta de investimentos cadastrada!" +
+																			"\n1 - voltar");
+
 															number = input.nextInt();
-															switch(number){
+															switch (number) {
 																case 1: {
 																	sairConsulta = true;
 																	break;
-																} default:{}
+																}
+																default: {
+																}
 															}
 														} while (!sairConsulta);
 														break;
-													} else{
+													} else {
 														console.limpar();
-														Investimento investimento = investimentoDAO.cadastro(investimentos, contas, userLogado);
+														Investimento investimento = investimentoDAO
+																.cadastro(investimentos, contas, userLogado);
 														do {
 															System.out.println(
-																"----------------------"
-																+ "\n| Investimento adicionado |\n"
-																+ "----------------------"
-																+ "\nConta: " 
-																+ investimento.getConta().toString() 
-																+"\nValor atual: " 
-																+ investimento.getValor().toString() 
-																+"\nData: " 
-																+ investimento.getData().toString()
-																+ "\n1-voltar"
-															);
-															
+																	"----------------------"
+																			+ "\n| Investimento adicionado |\n"
+																			+ "----------------------"
+																			+ "\nConta: "
+																			+ investimento.getConta().toString()
+																			+ "\nValor atual: "
+																			+ investimento.getValor().toString()
+																			+ "\nData: "
+																			+ investimento.getData().toString()
+																			+ "\n1-voltar");
+
 															number = input.nextInt();
-															switch(number){
+															switch (number) {
 																case 1: {
 																	sairConsulta = true;
 																	break;
-																}default: {
+																}
+																default: {
 																	System.out.println("Opção invalida");
 																	break;
 																}
 															}
-													} while (!sairConsulta);
-													sairConsulta = false;
-													break;
+														} while (!sairConsulta);
+														sairConsulta = false;
+														break;
 													}
 												}
 												case 5: {
 													console.limpar();
-													String parceladoOuInteiro = gastosDAO.cadastro(gastos, saldos.getSaldo(userLogado.getId()), contas, userLogado);
-													
+													String parceladoOuInteiro = gastosDAO.cadastro(gastos,
+															saldos.getSaldo(userLogado.getId()), contas, userLogado);
+
 													do {
-														if(parceladoOuInteiro == "Gasto inteiro"){
+														if (parceladoOuInteiro == "Gasto inteiro") {
 															GastoInteiro gasto = gastos.getGastosInteiros().get(
-																gastos.getGastosInteiros().size() - 1
-															);
-	
+																	gastos.getGastosInteiros().size() - 1);
+
 															System.out.println(
 																	"----------------------"
-																	+ "\n| Gasto adicionado |\n"
-																	+ "----------------------" +
-																	"\nTitulo: " + gasto.getTitulo() +
-																	"\nData: " + gasto.getData() +
-																	"\nValor: " + gasto.getValor().toString() +
-																	"\nFixo ou variável: " + gasto.getFixoOuVariavel()
-																	+ "\n1-voltar"
-															);
-														} else if(parceladoOuInteiro == "Gasto parcelado"){
+																			+ "\n| Gasto adicionado |\n"
+																			+ "----------------------" +
+																			"\nTitulo: " + gasto.getTitulo() +
+																			"\nData: " + gasto.getData() +
+																			"\nValor: " + gasto.getValor().toString() +
+																			"\nFixo ou variável: "
+																			+ gasto.getFixoOuVariavel()
+																			+ "\n1-voltar");
+														} else if (parceladoOuInteiro == "Gasto parcelado") {
 															GastoParcelado gasto = gastos.getGastosParcelados().get(
-																gastos.getGastosParcelados().size() - 1
-															);
-	
+																	gastos.getGastosParcelados().size() - 1);
+
 															System.out.println(
 																	"----------------------"
-																	+ "\n| Gasto adicionado |\n"
-																	+ "----------------------" +
-																	"\nTitulo: " + gasto.getTitulo() +
-																	"\nData: " + gasto.getData() +
-																	"\nValor da parcela: " + gasto.getValorParcela().toString() +
-																	"\nQuantidade de parcelas: " + gasto.getParcelas().toString() +
-																	"\nValor total: " + gasto.getValor().toString() +
-																	"\nTitular da Conta: " + gasto.getConta().getNomeCompleto() +
-																	"\nNome do banco: " + gasto.getConta().getNomeBanco()
-																	+ "\n1-voltar"
-															);
-														} else{
-															System.out.println("Conta investimento é inválida" + "\n1-voltar");
+																			+ "\n| Gasto adicionado |\n"
+																			+ "----------------------" +
+																			"\nTitulo: " + gasto.getTitulo() +
+																			"\nData: " + gasto.getData() +
+																			"\nValor da parcela: "
+																			+ gasto.getValorParcela().toString() +
+																			"\nQuantidade de parcelas: "
+																			+ gasto.getParcelas().toString() +
+																			"\nValor total: "
+																			+ gasto.getValor().toString() +
+																			"\nTitular da Conta: "
+																			+ gasto.getConta().getNomeCompleto() +
+																			"\nNome do banco: "
+																			+ gasto.getConta().getNomeBanco()
+																			+ "\n1-voltar");
+														} else {
+															System.out.println(
+																	"Conta investimento é inválida" + "\n1-voltar");
 														}
 
 														number = input.nextInt();
-															switch(number){
-																case 1: {
-																	sairConsulta = true;
-																	break;
-																}default: {
-																	System.out.println("Opção invalida");
-																	break;
-																}
+														switch (number) {
+															case 1: {
+																sairConsulta = true;
+																break;
 															}
+															default: {
+																System.out.println("Opção invalida");
+																break;
+															}
+														}
 													} while (!sairConsulta);
 													sairConsulta = false;
 													break;
 												}
 											}
 											break;
-										} case 4: {
+										}
+										case 4: {
 											console.limpar();
 											menu.menuProjecoes();
 											number = input.nextInt();
 
 											do {
 												switch (number) {
-													case 1:{
-														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos, "meses", userLogado.getId());
+													case 1: {
+														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos,
+																"meses", userLogado.getId());
 														System.out.println("\n1 - voltar");
-														
+
 														do {
 															number = input.nextInt();
-															switch(number){
+															switch (number) {
 																case 1: {
 																	sairConsulta = true;
 																	break;
-																}default: {
+																}
+																default: {
 																	System.out.println("Opção invalida");
 																	break;
 																}
 															}
 														} while (!sairConsulta);
 														break;
-													} case 2: {
-														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos, "anos", userLogado.getId());
+													}
+													case 2: {
+														projecoesDAO.cadastro(contas, ganhos, gastos, investimentos,
+																"anos", userLogado.getId());
 														System.out.println("\n1 - voltar");
-														
+
 														do {
 															number = input.nextInt();
-															switch(number){
+															switch (number) {
 																case 1: {
 																	sairConsulta = true;
 																	break;
-																}default: {
+																}
+																default: {
 																	System.out.println("Opção invalida");
 																	break;
 																}
 															}
 														} while (!sairConsulta);
 														break;
-													} case 3: {
+													}
+													case 3: {
 														sairConsulta = true;
 														break;
 													}
-												
-													default:{
+
+													default: {
+														System.out.println("Opção invalida");
+														break;
+													}
+												}
+											} while (!sairConsulta);
+											break;
+										}
+										case 5: {
+											console.limpar();
+											menu.menuDeletar();
+											int escolha = input.nextInt();
+											do {
+												switch (escolha) {
+													case 1: {
+														ganhoDAO.deletar(ganhos, userLogado,
+																saldos.getSaldo(userLogado.getId()));
+														System.out.println("\n1 - voltar");
+														do {
+															number = input.nextInt();
+															switch (number) {
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
+														break;
+													}
+													case 2: {
+														contaBancariaDAO.deletar(contas, userLogado);
+														System.out.println("\n1 - voltar");
+														do {
+															number = input.nextInt();
+															switch (number) {
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
+														break;
+													}
+													case 3: {
+														investimentoDAO.deletar(investimentos, userLogado);
+														System.out.println("\n1 - voltar");
+														do {
+															number = input.nextInt();
+															switch (number) {
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
+														break;
+													}
+													case 4: {
+														gastosDAO.deletar(gastos, userLogado);
+														System.out.println("\n1 - voltar");
+														do {
+															number = input.nextInt();
+															switch (number) {
+																case 1: {
+																	sairConsulta = true;
+																	break;
+																}
+																default: {
+																	System.out.println("Opção invalida");
+																	break;
+																}
+															}
+														} while (!sairConsulta);
+														break;
+													}
+													case 5: {
+														sairConsulta = true;
+														break;
+													}
+													default: {
 														System.out.println("Opção invalida");
 														break;
 													}
@@ -472,7 +587,7 @@ public class SistemaTeste {
 											break;
 										}
 									}
-								}while(!sairConsulta);
+								} while (!sairConsulta);
 								break;
 							}
 							case 2: {

@@ -12,15 +12,13 @@ import dadosPacote.LimparConsole;
 import dadosPacote.Usuario;
 
 public class InvestimentoDAO {
+	
 	Verificacoes verificar = new Verificacoes();
-
+	
 	Scanner input = new Scanner(System.in);
 	LimparConsole console = new LimparConsole();
-	RepositorioInvestimentos investimentos = new RepositorioInvestimentos();
-
-	ArrayList<Investimento> listaInvestimentos = investimentos.getInvestimentos();
-
-	public Investimento cadastro(RepositorioInvestimentos investimentos, RepositorioContasBancarias contas, Usuario user) {
+	public Investimento cadastro(RepositorioInvestimentos investimentos, RepositorioContasBancarias contas,
+			Usuario user) {
 		ArrayList<ContaInvestimento> listaContas = contas.getContasInvestimento();
 
 		Double valor;
@@ -38,6 +36,7 @@ public class InvestimentoDAO {
 		boolean deuCerto = false;
 		Double valorMensal;
 		int idUser = user.getId();
+		int idInvestimento = 0;
 
 		System.out.println(
 				"------------"
@@ -165,12 +164,13 @@ public class InvestimentoDAO {
 				int secondCount = 0;
 
 				if (escolha == 1) {
-					CDB investimentoCDB = new CDB(conta, valor, data, taxaFinal, quantMeses, valorMensal, idUser);
+					idInvestimento += 1;
+					CDB investimentoCDB = new CDB(conta, valor, data, taxaFinal, quantMeses, valorMensal, idUser, idInvestimento);
 					investimentos.addInvestimento(investimentoCDB);
 					deuCerto = true;
 				} else if (escolha == 2) {
 					TesouroPrefixado investimentoTesouroPrefixado = new TesouroPrefixado(conta, valor, data, taxaFinal,
-							0.0, quantMeses, valorMensal, idUser);
+							0.0, quantMeses, valorMensal, idUser, idInvestimento);
 					investimentos.addInvestimento(investimentoTesouroPrefixado);
 
 					do {
@@ -195,5 +195,38 @@ public class InvestimentoDAO {
 		investimento = investimentos.getInvestimentos().get(investimentos.getInvestimentos().size() - 1);
 
 		return investimento;
+	}
+
+	public void deletar(RepositorioInvestimentos investimentos, Usuario user){
+		int escolha;
+        System.out.println(
+            "------------"
+            + "\n| Cadastro |\n"
+            + "------------\n\n"
+            + "Digite o id do investimento: "
+        );
+
+        while (true) {
+			try {
+				escolha = input.nextInt();
+				if (verificar.validaInvestimento(escolha, investimentos, user.getId())) {
+					break;
+				}
+			} catch (Exception e) {
+				escolha = input.nextInt();
+				if (verificar.validaInvestimento(escolha, investimentos, user.getId())) {
+					break;
+				}
+			}
+		}
+        
+        for(Investimento investimento: investimentos.getInvestimentos()){
+            if(investimento.getIdUser() == user.getId()){
+                if(investimento.getId() == escolha){
+                    investimentos.getInvestimentos().remove(investimento);
+					break;
+                }
+            }
+        }
 	}
 }

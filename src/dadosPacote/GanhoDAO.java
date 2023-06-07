@@ -17,6 +17,7 @@ public class GanhoDAO {
         String tipo = "";
         String titulo;
         int idUser = user.getId();
+        int idGanho = 0;
         
         System.out.println(
             "------------"
@@ -80,9 +81,43 @@ public class GanhoDAO {
             count++;
         } while (tipo == "");
         count = 0;
+        idGanho += 1;
 
-
-        Ganho ganho = new Ganho(valor, tipo, titulo, idUser);
+        Ganho ganho = new Ganho(valor, tipo, titulo, idUser, idGanho);
         return ganho;
+    }
+
+    public void deletar(RepositorioGanho ganhos, Usuario user, Saldo saldo){
+        int escolha;
+        System.out.println(
+            "------------"
+            + "\n| Cadastro |\n"
+            + "------------\n\n"
+            + "Digite o id do ganho: "
+        );
+
+        while (true) {
+			try {
+				escolha = input.nextInt();
+				if (verificar.validaGanho(escolha, ganhos.getGanhos(), user.getId())) {
+					break;
+				}
+			} catch (Exception e) {
+				escolha = input.nextInt();
+				if (verificar.validaGanho(escolha, ganhos.getGanhos(), user.getId())) {
+					break;
+				}
+			}
+		}
+        
+        for(Ganho ganho: ganhos.getGanhos()){
+            if(ganho.getIdUser() == user.getId()){
+                if(ganho.getId() == escolha){
+                    saldo.subtractSaldo(ganho.getValor());
+                    ganhos.getGanhos().remove(ganho);
+                    break;
+                }
+            }
+        }
     }
 }

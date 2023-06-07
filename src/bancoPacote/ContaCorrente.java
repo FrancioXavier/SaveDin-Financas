@@ -6,10 +6,6 @@ public class ContaCorrente extends ContaBancaria{
         super(nomeCompleto, cpf, nomeBanco, id, idUser);
     }
 
-    public void transferencia(Double valor){
-        
-    }
-
     @Override
     public String getTipoConta(){
         return "Conta corrente";

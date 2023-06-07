@@ -153,5 +153,36 @@ public class ContaBancariaDAO {
         return conta;
     }
 
+    public void deletar(RepositorioContasBancarias contas, Usuario user){
+        int escolha;
+        System.out.println(
+            "------------"
+            + "\n| Cadastro |\n"
+            + "------------\n\n"
+            + "Digite o id da conta: "
+        );
 
+        while (true) {
+			try {
+				escolha = input.nextInt();
+				if (verificar.validaContaBancaria(escolha, contas.getContas())) {
+					break;
+				}
+			} catch (Exception e) {
+				escolha = input.nextInt();
+				if (verificar.validaContaBancaria(escolha, contas.getContas())) {
+					break;
+				}
+			}
+		}
+
+        for(ContaBancaria conta: contas.getContas()){
+            if(conta.getIdUser() == user.getId()){
+                if(conta.getId() == escolha){
+                    contas.getContas().remove(conta);
+                    break;
+                }
+            }
+        }
+    }
 }

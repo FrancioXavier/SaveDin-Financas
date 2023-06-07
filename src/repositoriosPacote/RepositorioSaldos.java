@@ -6,7 +6,7 @@ import java.util.Map;
 import dadosPacote.Saldo;
 
 public class RepositorioSaldos {
-    Map<Integer, Saldo> saldos = new HashMap<Integer, Saldo>();
+    private Map<Integer, Saldo> saldos = new HashMap<Integer, Saldo>();
 
     public void addSaldo(int idUser, Saldo saldo){
         saldos.put(idUser, saldo);

@@ -3,20 +3,22 @@ package dadosPacote;
 import bancoPacote.ContaBancaria;
 
 public class GastoParcelado implements Gastos {
-	String titulo;
-	String data;
-	ContaBancaria conta;
-	Integer parcelas;
-	Double valorParcela;
-	Double valor;
-	int idUser;
+	private String titulo;
+	private String data;
+	private ContaBancaria conta;
+	private Integer parcelas;
+	private Double valorParcela;
+	protected Double valor;
+	private int idUser;
+	private int id;
 	public GastoParcelado(
 		String data, 
 		String titulo, 
 		ContaBancaria conta, 
 		Integer parcelas, 
 		Double valorParcelas,
-		int idUser
+		int idUser,
+		int id
 	){
 		this.data = data;
 		this.titulo = titulo;
@@ -25,6 +27,15 @@ public class GastoParcelado implements Gastos {
 		this.valorParcela = valorParcelas;
 		this.valor = valorParcelas * parcelas;
 		this.idUser = idUser;
+		this.id = id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	@Override

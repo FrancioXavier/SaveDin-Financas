@@ -45,6 +45,7 @@ public class Menus {
 			"\n1 - Consultas"
 			+"\n3 - Cadastrar"
 			+"\n4 - Projeções"
+			+"\n5 - Deletar"
 			+"\n2 - voltar"
 		);
 	}
@@ -60,6 +61,19 @@ public class Menus {
 			+ "\n5 - Consultar investimentos"
 			+ "\n6 - Consultar gastos"
 			+ "\n2 - sair"
+		);
+	}
+
+	public void menuDeletar(){
+		System.out.println(
+			"---------------------"
+			+ "\n|   Menu Deletar   |\n"
+			+ "---------------------\n\n"
+			+ "\n1 - Deletar ganho"
+			+ "\n2 - Deletar conta bancária"
+			+ "\n3 - Deletar Investimento"
+			+ "\n4 - Deletar gasto"
+			+ "\n5 - sair"
 		);
 	}
 
@@ -94,7 +108,6 @@ public class Menus {
 				+ "----------------------\n\n"
 				+ "\n1 - Listar Usuários"
 				+ "\n2 - Adicionar Usuário"
-				+ "\n3 - Atualizar Usuário"
 				+ "\n4 - Remover Usuário"
 				+ "\n5 - Voltar");
 	}

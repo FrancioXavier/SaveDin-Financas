@@ -24,6 +24,7 @@ public class GastosDAO {
 		String tipo = "";
 		Double valor;
 		int idUser = user.getId();
+		int idGasto = 0;
 
 		System.out.println(
             "------------"
@@ -150,8 +151,9 @@ public class GastosDAO {
 				count++;	
 			}while(!verificar.validaValor(valorParcela));
 			count = 0;
+			idGasto += 1;
 			
-			GastoParcelado novoGasto = new GastoParcelado(data, titulo, conta, parcelas, valorParcela, idUser);
+			GastoParcelado novoGasto = new GastoParcelado(data, titulo, conta, parcelas, valorParcela, idUser, idGasto);
 			gastos.addGastoParcelado(novoGasto);
 			saldo.subtractSaldo(valorParcela);
 			return novoGasto.getTipoGasto();
@@ -230,11 +232,55 @@ public class GastosDAO {
 				count++;	
 			}while(!verificar.validaValor(valor));
 			count = 0;
-			GastoInteiro novoGasto = new GastoInteiro(tipo, titulo, valor, data, idUser);
+			idGasto += 1;
+
+			GastoInteiro novoGasto = new GastoInteiro(tipo, titulo, valor, data, idUser, idGasto);
 			gastos.addGastoInteiro(novoGasto);
 			saldo.subtractSaldo(valor);
 			return novoGasto.getTipoGasto();
 		}
+	}
+
+	public void deletar(RepositorioGastos gastos, Usuario user){
+		int escolha;
+        System.out.println(
+            "------------"
+            + "\n| Cadastro |\n"
+            + "------------\n\n"
+            + "Digite o id do gasto: "
+        );
+
+        while (true) {
+			try {
+				escolha = input.nextInt();
+				if (verificar.validaGasto(escolha, gastos, user.getId())) {
+					break;
+				}
+			} catch (Exception e) {
+				escolha = input.nextInt();
+				if (verificar.validaGasto(escolha, gastos, user.getId())) {
+					break;
+				}
+			}
+		}
+        
+        for(GastoInteiro gasto: gastos.getGastosInteiros()){
+            if(gasto.getIdUser() == user.getId()){
+                if(gasto.getId() == escolha){
+                    gastos.getGastosInteiros().remove(gasto);
+					break;
+                }
+            }
+        }
+
+		for(GastoParcelado gasto: gastos.getGastosParcelados()){
+            if(gasto.getIdUser() == user.getId()){
+                if(gasto.getId() == escolha){
+                    gastos.getGastosParcelados ().remove(gasto);
+					break;
+                }
+            }
+        }
 	}
 
 }

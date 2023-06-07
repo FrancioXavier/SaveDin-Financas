@@ -5,12 +5,22 @@ public class Ganho {
     private String tipo;
     private String titulo;
     private int idUser;
+    private int id;
 
-    public Ganho(Double valor, String tipo, String titulo, int idUser){
+    public Ganho(Double valor, String tipo, String titulo, int idUser, int id){
         this.valor = valor;
         this.tipo = tipo;
         this.titulo = titulo;
-        this.idUser = idUser;        
+        this.idUser = idUser;
+        this.id = id;        
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Double getValor(){

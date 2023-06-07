@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 
 import bancoPacote.ContaBancaria;
 import bancoPacote.ContaInvestimento;
+import investimentoPacote.Investimento;
 import repositoriosPacote.*;
 
 public class Verificacoes {
@@ -155,6 +156,7 @@ public class Verificacoes {
 
     public boolean validaContaBancaria(Integer id, ArrayList<ContaBancaria> contas){
         for(ContaBancaria conta : contas){
+            
             if(id == conta.getId()){
                 return true;
             }
@@ -162,6 +164,47 @@ public class Verificacoes {
 
         return false;
         
+    }
+
+    public boolean validaGanho(Integer id, ArrayList<Ganho> ganhos, int userId) throws IllegalArgumentException{
+        for(Ganho ganho : ganhos){
+            if(ganho.getIdUser() == userId){
+                if(id == ganho.getId()){
+                    return true;
+                }
+            }
+        }
+        throw new IllegalArgumentException("Ganho não existe, tente novamente: ");
+    }
+
+    public boolean validaGasto(Integer id, RepositorioGastos gastos, int userId) throws IllegalArgumentException{
+        for(GastoParcelado gasto : gastos.getGastosParcelados()){
+            if(gasto.getIdUser() == userId){
+                if(id == gasto.getId()){
+                    return true;
+                }
+            }
+        }
+
+        for(GastoInteiro gasto : gastos.getGastosInteiros()){
+            if(gasto.getIdUser() == userId){
+                if(id == gasto.getId()){
+                    return true;
+                }
+            }
+        }
+        throw new IllegalArgumentException("Gasto não existe, tente novamente: ");
+    }
+
+    public boolean validaInvestimento(Integer id, RepositorioInvestimentos investimentos, int userId) throws IllegalArgumentException{
+        for(Investimento investimento : investimentos.getInvestimentos()){
+            if(investimento.getIdUser() == userId){
+                if(id == investimento.getId()){
+                    return true;
+                }
+            }
+        }
+        throw new IllegalArgumentException("Investimento não existe, tente novamente: ");
     }
 
 }

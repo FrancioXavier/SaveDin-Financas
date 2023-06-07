@@ -4,7 +4,7 @@ import dadosPacote.Ganho;
 import java.util.ArrayList;
 
 public class RepositorioGanho {
-    ArrayList<Ganho> ganho = new ArrayList<Ganho>();
+    private ArrayList<Ganho> ganho = new ArrayList<Ganho>();
 
     public void addGanho(Ganho ganho){
         this.ganho.add(ganho);
@@ -19,9 +19,10 @@ public class RepositorioGanho {
 
         for(Ganho uniGanho: this.ganho){
             if(uniGanho.getIdUser() == idUser){
-                resultado += "\n Titulo: " + uniGanho.getTitulo().toString() + 
-                         "\n Valor: " + uniGanho.getValor().toString() + 
-                        "\n Tipo: " + uniGanho.getTipo().toString() +
+                resultado += "\nTitulo: " + uniGanho.getTitulo().toString() + 
+                         "\nValor: " + uniGanho.getValor().toString() + 
+                        "\nTipo: " + uniGanho.getTipo().toString() +
+                        "\nId do gasto:" + uniGanho.getId() +
                         "\n \n";
             }
         }

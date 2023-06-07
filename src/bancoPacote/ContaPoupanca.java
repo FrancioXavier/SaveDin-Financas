@@ -27,7 +27,7 @@ public class ContaPoupanca extends ContaBancaria{
         return valor;
     }
 
-    public Double tributacoes(Double lucro, Double valor, int meses){
+    private Double tributacoes(Double lucro, Double valor, int meses){
 		if(meses <= 6){
 			valor -= lucro * 0.225;
 		} else if(meses <= 12){

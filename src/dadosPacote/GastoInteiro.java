@@ -1,17 +1,27 @@
 package dadosPacote;
 
 public class GastoInteiro implements Gastos{
-	String fixoOuVariavel;
-	String titulo;
-	Double valor;
-	String data;
-	int idUser;
-	public GastoInteiro(String fixoOuVariavel, String titulo, Double valor, String data, int idUser) {
+	private String fixoOuVariavel;
+	private String titulo;
+	private Double valor;
+	private String data;
+	private int idUser;
+	private int id;
+	public GastoInteiro(String fixoOuVariavel, String titulo, Double valor, String data, int idUser, int id) {
 		this.fixoOuVariavel = fixoOuVariavel;
 		this.titulo = titulo;
 		this.valor = valor;
 		this.data = data;
 		this.idUser = idUser;
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override

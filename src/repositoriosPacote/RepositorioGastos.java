@@ -7,8 +7,8 @@ import dadosPacote.GastoParcelado;
 
 public class RepositorioGastos {
 
-	ArrayList<GastoInteiro> listaGastosInteiros = new ArrayList<GastoInteiro>();
-	ArrayList<GastoParcelado> listaGastosParcelados = new ArrayList<GastoParcelado>();
+	private ArrayList<GastoInteiro> listaGastosInteiros = new ArrayList<GastoInteiro>();
+	private ArrayList<GastoParcelado> listaGastosParcelados = new ArrayList<GastoParcelado>();
 
 	public void addGastoInteiro(GastoInteiro gasto) {
 		listaGastosInteiros.add(gasto);
